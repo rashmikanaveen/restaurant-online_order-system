@@ -4,7 +4,7 @@ import Food from '../components/Food';
 
 const Home = () => {
   return (
-    <div className="pt-28 sm:pt-24 md:pt-20 lg:pt-16 xl:pt-12">
+    <div className="pt-28 sm:pt-24 md:pt-0 lg:pt-8 xl:pt-0">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap -mx-4">
           {foodItems.map((food, index) => (
