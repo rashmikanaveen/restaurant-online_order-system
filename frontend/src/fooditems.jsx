@@ -10,7 +10,7 @@ const foodItems=[
     category: "nonveg",
     image:
       "https://img.freepik.com/premium-vector/delicious-food-vector-tasty-illustration-menu-popular-cartoon-restaurant-gourmet-cook-bac_1013341-219858.jpg?w=740",
-    description: "Pepper Barbecue Chicken with Cheese",
+    description: "Pepper Barbecue Chicken with Cheese ",
   },
   {
     name: "Veggie Delight Pizza",
