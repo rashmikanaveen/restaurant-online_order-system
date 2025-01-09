@@ -1,4 +1,4 @@
-[
+const foodItems=[
   {
     name: "Pepper Barbecue Chicken",
     varients: ["small", "medium", "large"],
@@ -122,3 +122,6 @@
     description: "Rich and creamy hot chocolate",
   },
 ];
+
+
+export default foodItems;
