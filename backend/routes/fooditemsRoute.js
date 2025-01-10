@@ -5,7 +5,7 @@ const FoodItem = require('../models/Foodmodel'); // Ensure the correct file name
 router.get('/getallfooditems', async (req, res) => {
     try {
         const fooditems = await FoodItem.find({});
-        console.log(fooditems); // Log the food items to the console
+        //console.log(fooditems); // Log the food items to the console
         res.json(fooditems); // Send the food items as JSON
     } catch (error) {
         console.error(error); // Log the error to the console

@@ -28,14 +28,17 @@ const Home = () => {
     fetchFoodItems();
   }, []);
   
-  if(FoodItems === null){
-    return <div>Loading...</div>;
+  if(FoodItems === null  || !FoodItems){
+    return <div className="pt-28 sm:pt-24 md:pt-0 lg:pt-8 xl:pt-0 mt-16" >
+      Loading...
+      </div>;
   }
   
+  
 
   
 
-  console.log(FoodItems);
+  //console.log(FoodItems);
   
     return (
       <div className="pt-28 sm:pt-24 md:pt-0 lg:pt-8 xl:pt-0 mt-4">

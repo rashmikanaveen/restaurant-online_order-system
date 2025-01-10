@@ -1,10 +1,13 @@
 import Reac, { useState } from "react";
-import foodItems from "../fooditems";
+
 import { Modal } from "react-bootstrap";
 import CustomModal from "../Modals/CustomModal";
 
 
 const Food = ({ food }) => {
+  
+  if (!food) {
+    return <h1>loading...</h1>;}
   
   //console.log(food);
   const [quantity, setQuantity] = useState(1);
