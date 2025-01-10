@@ -1,7 +1,9 @@
-import Reac, { useState } from "react";
+import React, { useState } from "react";
 
 import { Modal } from "react-bootstrap";
 import CustomModal from "../Modals/CustomModal";
+import { useDispatch,useSelector } from "react-redux";
+import { addToCart } from "../actions/cartActions";
 
 
 const Food = ({ food }) => {
@@ -18,6 +20,14 @@ const Food = ({ food }) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const dispatch = useDispatch();
+  
+  const handleAddToCart = () => {
+    dispatch(addToCart(food,quantity,varient));
+  };
+
+
 
   return (
     <div className="max-w-xs mx-auto p-2 bg-white shadow-2xl rounded-lg mt-6 ">
@@ -66,7 +76,9 @@ const Food = ({ food }) => {
           </h1>
         </div>
         <div className="ml-2">
-          <button className="bg-red-500 text-white font-bold py-2 px-4 rounded">
+          <button className="bg-red-500 text-white font-bold py-2 px-4 rounded"
+          onClick={handleAddToCart}
+          >
             Add to Cart
           </button>
         </div>

@@ -12,6 +12,17 @@ const Home = () => {
   const [FoodItems, setFoodItems] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [timeElapsed, setTimeElapsed] = useState(false);
+
+
+  useEffect(() => {
+    // Start a timeout for 30 seconds
+    const timer = setTimeout(() => {
+      setTimeElapsed(true);
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, []);
   
   useEffect(() => {
     const fetchFoodItems = async () => {
@@ -29,9 +40,9 @@ const Home = () => {
   }, []);
   
   if(FoodItems === null  || !FoodItems){
-    return <div className="pt-28 sm:pt-24 md:pt-0 lg:pt-8 xl:pt-0 mt-16" >
-      Loading...
-      </div>;
+    return <div className="pt-28 sm:pt-24 md:pt-0 lg:pt-8 xl:pt-0 mt-16">
+    {timeElapsed ? 'Connection lost. Please refresh again!' : 'Loading...'}
+  </div>;
   }
   
   
@@ -41,7 +52,7 @@ const Home = () => {
   //console.log(FoodItems);
   
     return (
-      <div className="pt-28 sm:pt-24 md:pt-0 lg:pt-8 xl:pt-0 mt-4">
+      <div className="pt-28 sm:pt-24 md:pt-0 lg:pt-8 xl:pt-0 mt-6">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap -mx-4">
             {FoodItems.map((food, index) => (
