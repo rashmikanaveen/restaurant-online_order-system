@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
-
-const fooditem = require('../models/Foodmodel'); // Ensure the correct file name and path
+const FoodItem = require('../models/Foodmodel'); // Ensure the correct file name and path
 
 router.get('/getallfooditems', async (req, res) => {
     try {
-        const fooditems = await fooditem.find({});
-        res.send(fooditems);
+        const fooditems = await FoodItem.find({});
+        console.log(fooditems); // Log the food items to the console
+        res.json(fooditems); // Send the food items as JSON
     } catch (error) {
-        return res.status(400).json({ message: error });
+        console.error(error); // Log the error to the console
+        return res.status(400).json({ message: error.message }); // Send the error message
     }
 });
 

@@ -1,14 +1,18 @@
 import axios from 'axios';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import axiosInstance from "../utils/AxiosInstance";
 
-export const getAllFoodItems = createAsyncThunk(
-  'foodItems/getAllFoodItems',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await axios.get('/api/fooditems/getallfooditems');
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
+
+export const getAllFoodItems = async () => {
+  try {
+    
+    const response = await axiosInstance.get("/api/fooditems/getallfooditems");
+    //console.log(response.data);
+    return response.data;
+
+  } catch (error) {
+    
+    console.error(error);
   }
-);
+  
+};
+

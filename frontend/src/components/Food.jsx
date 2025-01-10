@@ -5,6 +5,8 @@ import CustomModal from "../Modals/CustomModal";
 
 
 const Food = ({ food }) => {
+  
+  //console.log(food);
   const [quantity, setQuantity] = useState(1);
   const [varient, setVarient] = useState(food.varients[0]);
 
