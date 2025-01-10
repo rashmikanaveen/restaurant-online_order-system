@@ -1,6 +1,7 @@
 const express = require('express');
 const db = require('./db');
-const FoodItem = require('./models/EatEase');   
+
+const FoodItem = require('./models/Foodmodel');   
 
 
 const app = express();
