@@ -8,19 +8,14 @@ const app = express();
 app.use(express.json());
 
 
+const fooditemsRoute = require('./routes/fooditemsRoute');
+
 // Sample route
 app.get('/', (req, res) => {
   res.send('Welcome to the Restaurant Order System API');
 });
 
-app.get('/api/fooditems', async (req, res) => {
-  try {
-    const foodItems = await FoodItem.find();
-    res.json(foodItems);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+app.use('/api/fooditems',fooditemsRoute);
 
 const PORT = process.env.PORT || 5000;
 // Start the server
