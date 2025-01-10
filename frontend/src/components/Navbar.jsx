@@ -1,11 +1,23 @@
 import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useContext } from 'react';
+import { useContext } from "react";
+import { CiShoppingCart } from "react-icons/ci";
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
-  
+
+  const navigate = useNavigate();
+
+  const handleLogoClick = () => {
+    navigate('/');
+  };
+
+
+  const handleCartClick = () => {
+    navigate('/Cart');
+  };
 
   return (
     <div>
@@ -14,11 +26,13 @@ const Navbar = () => {
           <a
             href="#"
             className="flex items-center space-x-3 rtl:space-x-reverse"
+            onClick={handleLogoClick}
           >
             <img
               src="./src/assets/EatEase.webp"
               className="h-8"
               alt="EatEase Logo"
+              
             />
             <span className="self-center text-2xl font-semibold whitespace-nowrap">
               EatEase
@@ -42,8 +56,16 @@ const Navbar = () => {
                 <a
                   href="#"
                   className="block py-2 px-3 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:p-0 dark:text-black dark:border-gray-700"
+                  onClick={handleCartClick}
                 >
-                  Cart {cartItems.length}
+                  <div className="relative">
+                    <CiShoppingCart size="2em" />
+                    {cartItems.length > 0 && (
+                      <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">
+                        {cartItems.length}
+                      </span>
+                    )}
+                  </div>
                 </a>
               </li>
             </ul>
