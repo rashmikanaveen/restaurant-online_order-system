@@ -19,6 +19,10 @@ const Navbar = () => {
     navigate('/Cart');
   };
 
+  const handleLogInClick = () => {
+    navigate('/Login');
+  }
+
   return (
     <div>
       <nav className="bg-white border border-gray-200 fixed w-full z-20 top-0 start-0 shadow-lg">
@@ -29,7 +33,7 @@ const Navbar = () => {
             onClick={handleLogoClick}
           >
             <img
-              src="./src/assets/EatEase.webp"
+              src="./src/assets/EatEase.png"
               className="h-8"
               alt="EatEase Logo"
               
@@ -48,6 +52,7 @@ const Navbar = () => {
                 <a
                   href="#"
                   className="block py-2 px-3 text-black rounded md:p-0 dark:text-black dark:border-gray-700"
+                  onClick={handleLogInClick}
                 >
                   Login
                 </a>
