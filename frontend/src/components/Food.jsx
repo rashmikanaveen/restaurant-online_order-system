@@ -13,7 +13,7 @@ const Food = ({ food }) => {
   
   //console.log(food);
   const [quantity, setQuantity] = useState(1);
-  const [varient, setVarient] = useState(food.varients[0]);
+  const [variant, setVariant] = useState(food.variants[0]);
 
   //for modal
   const [show, setShow] = useState(false);
@@ -24,7 +24,7 @@ const Food = ({ food }) => {
   const dispatch = useDispatch();
   
   const handleAddToCart = () => {
-    dispatch(addToCart(food,quantity,varient));
+    dispatch(addToCart(food,quantity,variant));
   };
 
 
@@ -37,15 +37,15 @@ const Food = ({ food }) => {
       </div>
       <div className="flex justify-center mt-0 ">
         <div className="mr-2">
-          <p className="font-semibold">varients</p>
+          <p className="font-semibold">variants</p>
           <select
             className="border border-gray-300 rounded p-2"
-            value={varient}
-            onChange={(e) => setVarient(e.target.value)}
+            value={variant}
+            onChange={(e) => setVariant(e.target.value)}
           >
-            {food.varients.map((varient, index) => (
-              <option key={index} value={varient}>
-                {varient}
+            {food.variants.map((variant, index) => (
+              <option key={index} value={variant}>
+                {variant}
               </option>
             ))}
           </select>
@@ -72,7 +72,7 @@ const Food = ({ food }) => {
       <div className="flex justify-center mt-4">
         <div className="mr-2 mt-1.5">
           <h1>
-            Price:-Rs. <strong>{food.prices[varient] * quantity}</strong>
+            Price:-Rs. <strong>{food.prices[variant] * quantity}</strong>
           </h1>
         </div>
         <div className="ml-2">
