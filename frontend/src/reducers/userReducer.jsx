@@ -21,18 +21,16 @@ export const registerNewUserReducer=(state={},action) =>{
 }
 
 
-const initialLoginState = {
-    loading: false,
-    userInfo: null,
-    error: null,
-  };
+
   
-  export const loginUserReducer = (state = initialLoginState, action) => {
+  export const loginUserReducer = (state ={}, action) => {
     switch (action.type) {
       case 'USER_LOGIN_REQUEST':
         return { loading: true };
       case 'USER_LOGIN_SUCCESS':
-        return { loading: false, userInfo: action.payload };
+        return { loading: false,
+             success: true,
+            currentUser: action.payload };
       case 'USER_LOGIN_FAILED':
         return { loading: false, error: action.payload };
       case 'USER_LOGOUT':

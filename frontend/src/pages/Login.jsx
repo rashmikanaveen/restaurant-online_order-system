@@ -3,11 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import { userLogin } from '../actions/userActions';
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-
+import Cookies from 'js-cookie';
 const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+
+    useEffect(() => {
+        const currentUser = Cookies.get('userInfo');
+        if (currentUser) {
+          navigate('/');
+        }
+      }, [navigate]);
+
 
     const handleRegisrerUserClick = () => {
         navigate('/register');

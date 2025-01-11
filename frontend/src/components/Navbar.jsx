@@ -3,25 +3,33 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useContext } from "react";
 import { CiShoppingCart } from "react-icons/ci";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Navbar = () => {
+  const currentUser = Cookies.get("userInfo")
+    ? JSON.parse(Cookies.get("userInfo"))
+    : null;
+  //console.log(currentUser.name);
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
 
   const navigate = useNavigate();
 
   const handleLogoClick = () => {
-    navigate('/');
+    navigate("/");
   };
 
-
   const handleCartClick = () => {
-    navigate('/Cart');
+    navigate("/Cart");
   };
 
   const handleLogInClick = () => {
-    navigate('/Login');
-  }
+    navigate("/Login");
+  };
 
   return (
     <div>
@@ -36,7 +44,6 @@ const Navbar = () => {
               src="./src/assets/EatEase.png"
               className="h-8"
               alt="EatEase Logo"
-              
             />
             <span className="self-center text-2xl font-semibold whitespace-nowrap">
               EatEase
@@ -48,15 +55,62 @@ const Navbar = () => {
             id="navbar-sticky"
           >
             <ul className="flex flex-row p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white">
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 px-3 text-black rounded md:p-0 dark:text-black dark:border-gray-700"
-                  onClick={handleLogInClick}
-                >
-                  Login
-                </a>
-              </li>
+              {currentUser ? (
+                <li>
+                  
+                  <div className="relative font-[sans-serif] w-max mx-auto pt-0 ">
+                    <button
+                      type="button"
+                      id="dropdownToggle"
+                      className="px-5 py-2.5 border border-gray-300 text-gray-800 text-sm outline-none bg-white hover:bg-gray-50"
+                      onClick={toggleDropdown}
+                    >
+                      {currentUser.name}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-3 fill-gray-500 inline ml-3"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M11.99997 18.1669a2.38 2.38 0 0 1-1.68266-.69733l-9.52-9.52a2.38 2.38 0 1 1 3.36532-3.36532l7.83734 7.83734 7.83734-7.83734a2.38 2.38 0 1 1 3.36532 3.36532l-9.52 9.52a2.38 2.38 0 0 1-1.68266.69734z"
+                          clipRule="evenodd"
+                          
+                        />
+                      </svg>
+                    </button>
+
+                    <ul
+                      id="dropdownMenu"
+                      className={`absolute ${dropdownOpen ? "block" : "hidden"} shadow-[0_8px_19px_-7px_rgba(6,81,237,0.2)] bg-white py-2 z-[1000] min-w-full w-max divide-y max-h-96 overflow-auto`}
+                    >
+                      <li className="py-3 px-5 hover:bg-gray-50 text-gray-800 text-sm cursor-pointer">
+                        Dropdown option
+                      </li>
+                      <li className="py-3 px-5 hover:bg-gray-50 text-gray-800 text-sm cursor-pointer">
+                        Cloth set
+                      </li>
+                      <li className="py-3 px-5 hover:bg-gray-50 text-gray-800 text-sm cursor-pointer">
+                        Sales details
+                      </li>
+                      <li className="py-3 px-5 hover:bg-gray-50 text-gray-800 text-sm cursor-pointer">
+                        Marketing
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              ) : (
+                <li>
+                  <a
+                    href="#"
+                    className="block py-2 px-3 text-black rounded md:p-0 dark:text-black dark:border-gray-700"
+                    onClick={handleLogInClick}
+                  >
+                    Login
+                  </a>
+                </li>
+              )}
+
               <li>
                 <a
                   href="#"
