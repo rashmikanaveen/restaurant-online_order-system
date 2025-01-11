@@ -34,6 +34,7 @@ const RegisterNew = () => {
         }
         console.log(newUser)
         dispatch(registerNewUser(newUser))
+        alert("User Registered Successfully")
     }
   }
 
@@ -137,6 +138,7 @@ const RegisterNew = () => {
                   Register
                 </button>
               </div>
+              {/* 
               <p className="text-sm text-gray-800 mt-6">
                 Already have an account?{" "}
                 <a
@@ -147,6 +149,8 @@ const RegisterNew = () => {
                   Login here
                 </a>
               </p>
+              
+              */}
             </form>
 
             <div className="h-full">
