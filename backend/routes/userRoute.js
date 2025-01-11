@@ -3,8 +3,9 @@ const router = express.Router();
 const User = require('../models/userModel'); 
 
 router.post('/register', async (req, res) => {
-    const { user } = req.body;
-    const { name, email, password } = user;
+    
+    const { name, email, password } = req.body;
+    
   
     if (!name || !email || !password) {
       return res.status(400).json({ message: 'Please fill in all fields' });

@@ -5,6 +5,8 @@ import { useContext } from "react";
 import { CiShoppingCart } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import {userLogout} from '../actions/userActions'
+import { useDispatch } from "react-redux";
 
 const Navbar = () => {
   const currentUser = Cookies.get("userInfo")
@@ -18,6 +20,7 @@ const Navbar = () => {
   };
 
   const navigate = useNavigate();
+  const dispatchEvent=useDispatch();
 
   const handleLogoClick = () => {
     navigate("/");
@@ -85,17 +88,13 @@ const Navbar = () => {
                       className={`absolute ${dropdownOpen ? "block" : "hidden"} shadow-[0_8px_19px_-7px_rgba(6,81,237,0.2)] bg-white py-2 z-[1000] min-w-full w-max divide-y max-h-96 overflow-auto`}
                     >
                       <li className="py-3 px-5 hover:bg-gray-50 text-gray-800 text-sm cursor-pointer">
-                        Dropdown option
+                        Orders
                       </li>
-                      <li className="py-3 px-5 hover:bg-gray-50 text-gray-800 text-sm cursor-pointer">
-                        Cloth set
+                      <li className="py-3 px-5 hover:bg-gray-50 text-gray-800 text-sm cursor-pointer"
+                      onClick={()=>{dispatchEvent(userLogout())}}>
+                        LogOut
                       </li>
-                      <li className="py-3 px-5 hover:bg-gray-50 text-gray-800 text-sm cursor-pointer">
-                        Sales details
-                      </li>
-                      <li className="py-3 px-5 hover:bg-gray-50 text-gray-800 text-sm cursor-pointer">
-                        Marketing
-                      </li>
+                      
                     </ul>
                   </div>
                 </li>

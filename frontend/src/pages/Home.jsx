@@ -4,7 +4,8 @@ import Food from '../components/Food';
 import { use } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {getAllFoodItems} from '../actions/fooditemActions';
-
+import Loading from '../components/Loading';
+import Error from '../components/Error';
 
 
 
@@ -41,7 +42,7 @@ const Home = () => {
   
   if(FoodItems === null  || !FoodItems){
     return <div className="pt-28 sm:pt-24 md:pt-0 lg:pt-8 xl:pt-0 mt-16">
-    {timeElapsed ? 'Connection lost. Please refresh again!' : 'Loading...'}
+    {timeElapsed ? <Error error='Connection lost. Please refresh again!'/> :<Loading/>}
   </div>;
   }
   

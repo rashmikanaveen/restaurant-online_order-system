@@ -18,3 +18,12 @@ export const userLogin=(user)=> async dispatch=>{
     }
 
 }
+
+
+export const userLogout=()=> async dispatch=>{
+
+    dispatch({type:'USER_LOGOUT'})
+    Cookies.remove('userInfo');
+    window.location.href = '/login';
+
+}

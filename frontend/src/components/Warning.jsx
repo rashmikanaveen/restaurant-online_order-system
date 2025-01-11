@@ -1,24 +1,31 @@
 import React from "react";
 
-const Error = ({ error }) => {
+const Warning = ({error}) => {
   return (
     <div>
       <div
-        class="flex items-start max-sm:flex-col bg-red-100 text-red-800 p-4 rounded-lg relative"
+        class="flex items-start max-sm:flex-col bg-yellow-100 text-yellow-800 p-4 rounded-lg relative"
         role="alert"
       >
         <div class="flex items-center max-sm:mb-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="w-[18px] fill-red-500 inline mr-3"
-            viewBox="0 0 32 32"
+            class="w-[18px] fill-yellow-500 inline mr-3"
+            viewBox="0 0 128 128"
           >
             <path
-              d="M16 1a15 15 0 1 0 15 15A15 15 0 0 0 16 1zm6.36 20L21 22.36l-5-4.95-4.95 4.95L9.64 21l4.95-5-4.95-4.95 1.41-1.41L16 14.59l5-4.95 1.41 1.41-5 4.95z"
-              data-original="#ea2d3f"
+              d="M56.463 14.337 6.9 106.644C4.1 111.861 8.173 118 14.437 118h99.126c6.264 0 10.338-6.139 7.537-11.356L71.537 14.337c-3.106-5.783-11.968-5.783-15.074 0z"
+              data-original="#fad271"
             />
+            <g fill="#fff">
+              <path
+                d="M64 31.726a5.418 5.418 0 0 0-5.5 5.45l1.017 44.289A4.422 4.422 0 0 0 64 85.726a4.422 4.422 0 0 0 4.482-4.261L69.5 37.176a5.418 5.418 0 0 0-5.5-5.45z"
+                data-original="#fff"
+              />
+              <circle cx="64" cy="100.222" r="6" data-original="#fff" />
+            </g>
           </svg>
-          <strong class="font-bold text-sm">Error!</strong>
+          <strong class="font-bold text-sm">Warning!</strong>
         </div>
 
         <span class="block sm:inline text-sm ml-4 mr-8 max-sm:ml-0 max-sm:mt-2">
@@ -27,7 +34,7 @@ const Error = ({ error }) => {
 
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="w-7 hover:bg-red-200 rounded-lg transition-all p-2 cursor-pointer fill-red-500 absolute right-4 top-1/2 -translate-y-1/2"
+          class="w-7 hover:bg-yellow-200 rounded-lg transition-all p-2 cursor-pointer fill-yellow-500 absolute right-4 top-1/2 -translate-y-1/2"
           viewBox="0 0 320.591 320.591"
         >
           <path

@@ -4,12 +4,13 @@ import { Modal } from "react-bootstrap";
 import CustomModal from "../Modals/CustomModal";
 import { useDispatch,useSelector } from "react-redux";
 import { addToCart } from "../actions/cartActions";
+import Loading from "./Loading";
 
 
 const Food = ({ food }) => {
   
   if (!food) {
-    return <h1>loading...</h1>;}
+    return <Loading/>}
   
   //console.log(food);
   const [quantity, setQuantity] = useState(1);

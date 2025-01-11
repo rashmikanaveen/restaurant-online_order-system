@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import {registerNewUser} from '../actions/adminActions'
+import  Success  from "../components/success";
 
 const RegisterNew = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const navigate = useNavigate();
 
@@ -34,7 +36,8 @@ const RegisterNew = () => {
         }
         console.log(newUser)
         dispatch(registerNewUser(newUser))
-        alert("User Registered Successfully")
+        //alert("User Registered Successfully")
+        setSuccess(true);
     }
   }
 
@@ -43,6 +46,7 @@ const RegisterNew = () => {
 
   return (
     <div className="pt-28 sm:pt-24 md:pt-0 lg:pt-8 xl:pt-0 mt-4">
+      {success && <Success success="User Registered Successfully" />}
       <div className="font-[sans-serif]">
         <div className="min-h-screen flex fle-col items-center justify-center p-6 ">
           <div className="grid lg:grid-cols-2 items-center gap-6 max-w-6xl max-lg:max-w-lg w-full  ">
@@ -138,7 +142,7 @@ const RegisterNew = () => {
                   Register
                 </button>
               </div>
-              {/* 
+               
               <p className="text-sm text-gray-800 mt-6">
                 Already have an account?{" "}
                 <a
@@ -150,7 +154,7 @@ const RegisterNew = () => {
                 </a>
               </p>
               
-              */}
+              
             </form>
 
             <div className="h-full">
