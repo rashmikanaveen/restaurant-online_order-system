@@ -4,10 +4,16 @@ export const addToCart = (food, quantity, variant) =>  {
     _id: food._id,
     image: food.image,
     variant: variant,
-    quantity: quantity,
+    quantity: Number(quantity),
     prices: food.prices,
     price: food.prices[variant] * quantity,
   };
+
+  if (quantity <= 0) {
+    return (dispatch) => {
+      alert("Quantity should be greater than 0");
+    };
+  }
 
   
   return {

@@ -57,8 +57,9 @@ const Food = ({ food }) => {
             className="border border-gray-300 rounded p-2"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
+            
           >
-            {[...Array(10).keys()].map((x, index) => {
+            {[...Array(100).keys()].map((x, index) => {
               return (
                 <option key={index} value={index + 1}>
                   {index + 1}
@@ -66,6 +67,7 @@ const Food = ({ food }) => {
               );
             })}
           </select>
+          
         </div>
       </div>
 
