@@ -10,6 +10,8 @@ app.use(express.json());
 app.use(cors()); 
 
 const fooditemsRoute = require('./routes/fooditemsRoute');
+const userRoute=require('./routes/userRoute');
+
 
 // Sample route
 app.get('/', (req, res) => {
@@ -17,6 +19,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/fooditems',fooditemsRoute);
+app.use('/api/users',userRoute);
+
 
 const PORT = process.env.PORT || 5000;
 // Start the server

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const FoodItem = require('../models/Foodmodel'); // Ensure the correct file name and path
+const FoodItem = require('../models/Foodmodel'); 
 
 router.get('/getallfooditems', async (req, res) => {
     try {
