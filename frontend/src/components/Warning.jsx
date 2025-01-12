@@ -3,7 +3,7 @@ import React from "react";
 const Warning = ({error}) => {
   return (
     <div>
-      <></>
+      
       <div
         class="flex items-start max-sm:flex-col bg-yellow-100 text-yellow-800 p-4 rounded-lg relative"
         role="alert"
