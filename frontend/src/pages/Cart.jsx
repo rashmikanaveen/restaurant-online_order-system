@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, deleteFromCart } from '../actions/cartActions';
+import Checkout from '../components/Checkout';
 
 
 const Cart = () => {
@@ -23,7 +24,7 @@ const Cart = () => {
             ) : (
               <ul className="flex flex-col space-y-4">
                 {cartItems.map((item) => (
-                  <li key={item._id} className="flex flex-col sm:flex-row sm:justify-between items-center border p-4 rounded-lg">
+                  <li key={item._id+item.variant} className="flex flex-col sm:flex-row sm:justify-between items-center border p-4 rounded-lg">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-6">
                       <img src={item.image} alt="product-image" className="w-20 h-20 object-cover rounded-lg" />
                       <div className="mt-4 sm:mt-0">
@@ -96,9 +97,11 @@ const Cart = () => {
                   <p className="text-sm text-gray-700">including VAT</p>
                 </div>
               </div>
-              <button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
+              <Checkout total={total} />
+
+              {/*<button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
                 Check out
-              </button>
+              </button>*/}
             </div>
           )}
         </div>

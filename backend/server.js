@@ -11,6 +11,7 @@ app.use(cors());
 
 const fooditemsRoute = require('./routes/fooditemsRoute');
 const userRoute=require('./routes/userRoute');
+const orderRoute=require('./routes/orderRoute');
 
 
 // Sample route
@@ -20,6 +21,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/fooditems',fooditemsRoute);
 app.use('/api/users',userRoute);
+app.use('/api/orders',orderRoute);
 
 
 const PORT = process.env.PORT || 5000;
