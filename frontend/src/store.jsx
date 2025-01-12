@@ -3,12 +3,14 @@ import { thunk } from "redux-thunk"; // Use named import
 import { composeWithDevTools } from "redux-devtools-extension";
 import { cartReducer } from "./reducers/cartReducer";
 import {registerNewUserReducer,loginUserReducer} from "./reducers/userReducer"
-import {placeOrderReducer} from "./reducers/orderReducer"
+import {placeOrderReducer,getUserOrdersReducer} from "./reducers/orderReducer"
+
 const rootReducer = combineReducers({
   cart: cartReducer,
   registerNewUserReducer : registerNewUserReducer,
   loginUserReducer : loginUserReducer,
-  placeOrderReducer : placeOrderReducer
+  placeOrderReducer : placeOrderReducer,
+  getUserOrdersReducer:getUserOrdersReducer
   
   // other reducers
 });

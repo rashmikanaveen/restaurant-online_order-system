@@ -1,3 +1,5 @@
+import Orders from "../pages/Orders";
+
 export const placeOrderReducer=(state={},action) =>{
 
     switch(action.type){
@@ -11,6 +13,7 @@ export const placeOrderReducer=(state={},action) =>{
         }
         case 'PLACE_ORDER_FAILED' : return{
             loading:false,
+            
             error:action.payload
             
         }
@@ -19,3 +22,31 @@ export const placeOrderReducer=(state={},action) =>{
     }
 
 }
+
+
+export const getUserOrdersReducer=(state={orders:[]},action) =>{
+
+    switch(action.type){
+
+        case 'GET_USER_ORDER_REQUEST' : return{
+            loading:true,
+            ...state
+
+        }
+        case 'GET_USER_ORDER_SUCCESS' : return{
+            loading:false,
+            orders:action.payload
+            
+        }
+        case 'GET_USER_ORDER_FAILED' : return{
+            loading:false,
+            error:action.payload
+            
+        }
+        default:
+            //console.log(action.payload)
+      return state;
+    }
+
+}
+

@@ -36,7 +36,7 @@ const Success = ({success}) => {
 
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="w-7 hover:bg-green-200 rounded-lg transition-all p-2 cursor-pointer fill-green-500 absolute right-4 top-1/2 -translate-y-1/2"
+          className="w-7 hover:bg-green-200 rounded-lg transition-all p-2 cursor-pointer fill-green-500 absolute right-4 top-1/2 -translate-y-1/2"
           viewBox="0 0 320.591 320.591"
         >
           <path

@@ -55,8 +55,8 @@ export const cartReducer = (state = initialState, action) => {
 
       case 'DELETE_FROM_CART':
         const item2 = action.payload;
-        console.log(item2);
-        console.log( action.payload.variant);
+        //console.log(item2);
+        //console.log( action.payload.variant);
         updatedCartItems = state.cartItems.filter(
           (x) => x._id !== action.payload._id || x.variant !== action.payload.variant
         );

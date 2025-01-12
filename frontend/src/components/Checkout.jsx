@@ -1,19 +1,29 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
-import { useDispatch } from 'react-redux';
+import { useDispatch ,useSelector} from 'react-redux';
 import {placeOrder} from '../actions/orderActions'
+import Error from './Error';
+import Success from './Success';
+import Warning from './Warning';
+import Loading from './Loading';
+
 const Checkout = ({ total }) => {
+  const orderstate = useSelector((state) => state.placeOrderReducer);
+  const { loading, error, success } = orderstate;
 
 
     const dispatch = useDispatch();
   const onToken = (token) => {
     // Handle the token received from Stripe
-    console.log(token);
+    //console.log(token);
     dispatch(placeOrder(token,total));
   };
 
   return (
     <div>
+      {loading && (<Loading/>)}
+      {error && (<Error error='Something went wrong'/>)}
+      {success && (<Success success='Your Order Placed Successfully'/>)}
       <StripeCheckout
         amount={total * 100} // Amount in cents
         shippingAddress

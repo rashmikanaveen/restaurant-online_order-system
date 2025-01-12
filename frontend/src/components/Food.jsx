@@ -8,6 +8,7 @@ import Loading from "./Loading";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
+
 const Food = ({ food }) => {
   
   if (!food) {

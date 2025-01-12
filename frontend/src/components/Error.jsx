@@ -4,13 +4,13 @@ const Error = ({ error }) => {
   return (
     <div>
       <div
-        class="flex items-start max-sm:flex-col bg-red-100 text-red-800 p-4 rounded-lg relative"
+        className="flex items-start max-sm:flex-col bg-red-100 text-red-800 p-4 rounded-lg relative"
         role="alert"
       >
-        <div class="flex items-center max-sm:mb-2">
+        <div className="flex items-center max-sm:mb-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="w-[18px] fill-red-500 inline mr-3"
+            className="w-[18px] fill-red-500 inline mr-3"
             viewBox="0 0 32 32"
           >
             <path
@@ -18,16 +18,16 @@ const Error = ({ error }) => {
               data-original="#ea2d3f"
             />
           </svg>
-          <strong class="font-bold text-sm">Error!</strong>
+          <strong className="font-bold text-sm">Error!</strong>
         </div>
 
-        <span class="block sm:inline text-sm ml-4 mr-8 max-sm:ml-0 max-sm:mt-2">
+        <span className="block sm:inline text-sm ml-4 mr-8 max-sm:ml-0 max-sm:mt-2">
           {error}
         </span>
 
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="w-7 hover:bg-red-200 rounded-lg transition-all p-2 cursor-pointer fill-red-500 absolute right-4 top-1/2 -translate-y-1/2"
+          className="w-7 hover:bg-red-200 rounded-lg transition-all p-2 cursor-pointer fill-red-500 absolute right-4 top-1/2 -translate-y-1/2"
           viewBox="0 0 320.591 320.591"
         >
           <path

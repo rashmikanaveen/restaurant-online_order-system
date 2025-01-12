@@ -22,8 +22,8 @@ const Navbar = () => {
   const navigate = useNavigate();
   const dispatchEvent=useDispatch();
 
-  const handleLogoClick = () => {
-    navigate("/");
+  const handleOrdersClick = () => {
+    navigate("/orders");
   };
 
   const handleCartClick = () => {
@@ -87,7 +87,8 @@ const Navbar = () => {
                       id="dropdownMenu"
                       className={`absolute ${dropdownOpen ? "block" : "hidden"} shadow-[0_8px_19px_-7px_rgba(6,81,237,0.2)] bg-white py-2 z-[1000] min-w-full w-max divide-y max-h-96 overflow-auto`}
                     >
-                      <li className="py-3 px-5 hover:bg-gray-50 text-gray-800 text-sm cursor-pointer">
+                      <li className="py-3 px-5 hover:bg-gray-50 text-gray-800 text-sm cursor-pointer"
+                      onClick={handleOrdersClick}>
                         Orders
                       </li>
                       <li className="py-3 px-5 hover:bg-gray-50 text-gray-800 text-sm cursor-pointer"
