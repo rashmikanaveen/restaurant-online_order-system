@@ -5,7 +5,8 @@ import CustomModal from "../Modals/CustomModal";
 import { useDispatch,useSelector } from "react-redux";
 import { addToCart } from "../actions/cartActions";
 import Loading from "./Loading";
-
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const Food = ({ food }) => {
   
@@ -23,10 +24,19 @@ const Food = ({ food }) => {
   const handleShow = () => setShow(true);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   
   const handleAddToCart = () => {
     dispatch(addToCart(food,quantity,variant));
   };
+
+  const handleLogInClick = () => {
+    navigate("/Login");
+  };
+
+  const currentUser = Cookies.get("userInfo")
+      ? JSON.parse(Cookies.get("userInfo"))
+      : null;
 
 
 
@@ -34,7 +44,7 @@ const Food = ({ food }) => {
     <div className="max-w-xs mx-auto p-2 bg-white shadow-2xl rounded-lg mt-6 ">
       <div onClick={handleShow}>
         <h1>{food.name}</h1>
-        <img src={food.image} className="w-40 h-auto mx-auto" alt={food.name} />
+        <img src={food.image} className="w-full h-60 object-cover mt-4" alt={food.name} />
       </div>
       <div className="flex justify-center mt-0 ">
         <div className="mr-2">
@@ -80,7 +90,7 @@ const Food = ({ food }) => {
         </div>
         <div className="ml-2">
           <button className="bg-red-500 text-white font-bold py-2 px-4 rounded"
-          onClick={handleAddToCart}
+          onClick={currentUser ?handleAddToCart:handleLogInClick}
           >
             Add to Cart
           </button>
