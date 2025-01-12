@@ -24,6 +24,7 @@ export const userLogout=()=> async dispatch=>{
 
     dispatch({type:'USER_LOGOUT'})
     Cookies.remove('userInfo');
+    localStorage.removeItem('cartItems');
     window.location.href = '/login';
 
 }
