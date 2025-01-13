@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 import {userLogout} from '../actions/userActions'
 import { useDispatch } from "react-redux";
 
-const Navbar = () => {
+const HeaderNavBar = () => {
   const currentUser = Cookies.get("userInfo")
     ? JSON.parse(Cookies.get("userInfo"))
     : null;
@@ -33,6 +33,7 @@ const Navbar = () => {
   const handleLogInClick = () => {
     navigate("/Login");
   };
+  
 
   return (
     <div>
@@ -141,4 +142,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default HeaderNavBar;

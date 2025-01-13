@@ -51,7 +51,7 @@ const Orders = () => {
                 >
                   Select order type
                 </label>
-                <select id="order-type" defaultValue="All orders">
+                <select id="order-type" defaultValue="All orders" className="border border-gray-300 rounded-md p-2">
                   <option >All orders</option>
 
                   <option value="transit">In transit</option>
@@ -67,7 +67,7 @@ const Orders = () => {
                 >
                   Select duration
                 </label>
-                <select id="duration" defaultValue="this week" >
+                <select id="duration" defaultValue="this week" className="border border-gray-300 rounded-md p-2" >
                   <option >this week</option>
                   <option value="this month">this month</option>
                   <option value="last 3 months">the last 3 months</option>

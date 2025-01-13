@@ -1,5 +1,5 @@
 import './App.css';
-import Navbar from './components/Navbar';
+import Navbar_v_1 from './components/Navbar_v_1.jsx';
 
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -13,13 +13,13 @@ import Order from './pages/Order.jsx';
 import ContactForm from './pages/ContactForm.jsx';
 import Footer from './components/Footer';
 import Admin from './pages/Admin';
-import Sidebar from './components/Sidebar';
+import Navbar_v_2 from './components/Navbar_v_2.jsx';
 function App() {
   return (
     <div>
       <Router>
-      {/*<Navbar />*/}
-      <Sidebar />
+      {/*<Navbar_v_1 />*/}
+      <Navbar_v_2 />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />

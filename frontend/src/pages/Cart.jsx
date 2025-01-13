@@ -14,7 +14,7 @@ const Cart = () => {
   const total = subtotal ;
 
   return (
-    <div className="pt-28 md:pt-0 lg:ml-52 md:ml-16 xl:ml-48">
+    <div className="lg:ml-52 md:ml-16 xl:ml-48 ">
       <div className="h-screen  pt-12 pb-1">
         <h1 className="mb-10 text-center text-2xl font-bold">Cart Items</h1>
         <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0 pt-0">
