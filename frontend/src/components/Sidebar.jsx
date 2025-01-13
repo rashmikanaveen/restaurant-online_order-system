@@ -195,7 +195,7 @@ const Sidebar = () => {
             <nav id="sidebar" className="lg:min-w-[250px] w-max max-lg:min-w-8">
             <div
               id="sidebar-collapse-menu"
-              className={`fixed top-0 left-0 h-screen bg-white transition-all duration-500 md:mt-16   lg:mt-20 sm:mt-20 md:mt-16   lg:mt-20 sm:mt-16 mt-20    ${
+              className={`fixed top-0 left-0 h-screen bg-white transition-all duration-500    lg:pt-4 sm:mt-20 md:mt-18   mt-20    ${
                 isSidebarOpen ? 'w-64' : "bg-white shadow-lg h-screen fixed py-6 px-4 top-[70px] left-0 overflow-auto z-[99] lg:min-w-[250px] lg:w-max max-lg:w-0 max-lg:invisible transition-all duration-500"
               }`}
             >
