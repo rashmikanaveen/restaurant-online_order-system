@@ -53,7 +53,7 @@ const Home = () => {
   //console.log(FoodItems);
   
     return (
-      <div className="pt-28 sm:pt-24 md:pt-0 lg:pt-8 xl:pt-0 mt-6">
+      <div className="pt-28 sm:pt-24 md:pt-0 lg:pt-8 xl:pt-0 mt-6 lg:ml-52  xl:ml-48 ">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap -mx-4">
             {FoodItems.map((food, index) => (

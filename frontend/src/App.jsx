@@ -10,11 +10,16 @@ import Login from './pages/Login.jsx';
 import RegisterNew from './pages/RegisterNew.jsx';
 import Orders from './pages/Orders.jsx';
 import Order from './pages/Order.jsx';
+import ContactForm from './pages/ContactForm.jsx';
+import Footer from './components/Footer';
+import Admin from './pages/Admin';
+import Sidebar from './components/Sidebar';
 function App() {
   return (
     <div>
       <Router>
-      <Navbar />
+      {/*<Navbar />*/}
+      <Sidebar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
@@ -22,7 +27,11 @@ function App() {
         <Route path="/register" element={<RegisterNew />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/orders/:orderId" element={<Order />} />
+        <Route path="/contact" element={<ContactForm />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
+      <Footer />
+
     </Router>
     </div>
   );

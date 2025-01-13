@@ -34,7 +34,7 @@ const Orders = () => {
   const sortedOrders = orders ? [...orders].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) : [];
 
   return (
-    <section className="pt-28 sm:pt-24 md:pt-12 lg:pt-16 xl:pt-8 mt-6 ">
+    <section className="pt-28 sm:pt-24 md:pt-12 lg:pt-16 xl:pt-8 mt-6 lg:ml-52 md:ml-16 xl:ml-48 ">
       <div className="mx-auto max-w-screen-xl px-4 2xl:px-0 ">
         <div className="mx-auto max-w-5xl ">
           {/* <!-- Page title --> */}
@@ -55,7 +55,7 @@ const Orders = () => {
                   <option >All orders</option>
 
                   <option value="transit">In transit</option>
-                  <option value="confirmed">Confirmed</option>
+                  <option value="Delivered">Delivered</option>
                 </select>
               </div>
 

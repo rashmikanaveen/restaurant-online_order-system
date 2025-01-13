@@ -56,7 +56,7 @@ const Order = () => {
 
 
   return (
-    <div >
+    <div className="lg:ml-52 md:ml-16 xl:ml-48">
       {loading && <Loading />}
       {error && <Error error="Something went wrong" />}
       {order ? (
