@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { userLogout } from "../actions/userActions";
 import { useDispatch } from "react-redux";
 import { MdPerson } from "react-icons/md";
-import Sidebar from "./Sidebar";
+
 
 const Navbar_v_2 = () => {
   const currentUser = Cookies.get("userInfo")
@@ -142,8 +142,8 @@ const Navbar_v_2 = () => {
       </header>
       <div className="flex items-start m-0 p-0">
         
-        {/* <!-- Sidebar --> */}
-        <Sidebar/>
+        {/* <Sidebar/> */}
+        
 
         
       </div>

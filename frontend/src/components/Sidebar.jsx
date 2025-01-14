@@ -12,19 +12,16 @@ const Sidebar = () => {
 
     return (
         <div className=''>
-            {/* <!-- Sidebar --> */}
-        {currentUser?(
-          <dir>
-            <nav id="sidebar" className="lg:min-w-[250px] w-max max-lg:min-w-8 ">
+          <nav id="sidebar" className="lg:min-w-[250px] w-max max-lg:min-w-8 ">
           <div
             id="sidebar-collapse-menu "
-            className={`fixed top-0 left-0 h-screen bg-white transition-all duration-500    lg:pt-4 sm:mt-20 md:mt-18 xl:mt-16   mt-20    ${
+            className={`fixed top-0 left-0 h-screen bg-white transition-all duration-500    lg:pt-4 sm:mt-20 md:mt-18 xl:mt-0  lg:mt-0   mt-20    ${
               isSidebarOpen
                 ? "w-64"
                 : "bg-white shadow-lg h-screen fixed py-6 px-4 top-[70px] left-0 overflow-auto z-[99] lg:min-w-[250px] lg:w-max max-lg:w-0 max-lg:invisible transition-all duration-500"
             }`}
           >
-            <ul className="space-y-2">
+            <ul className="space-y-2 ">
               <li>
                 <a
                   href="/"
@@ -265,11 +262,7 @@ const Sidebar = () => {
             </svg>
 
         </button>
-          </dir>
-        ):(
-          <div></div>
-
-        )}
+          
         </div>
     );
 };

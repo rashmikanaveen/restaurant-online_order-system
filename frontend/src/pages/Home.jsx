@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {getAllFoodItems} from '../actions/fooditemActions';
 import Loading from '../components/Loading';
 import Error from '../components/Error';
+import Sidebar from '../components/Sidebar';
 
 
 
@@ -53,8 +54,9 @@ const Home = () => {
   //console.log(FoodItems);
   
     return (
-      <div className="pt-28 sm:pt-24 md:pt-0 lg:pt-8 xl:pt-0 mt-6 lg:ml-52  xl:ml-48 ">
+      <div className="pt-28 sm:pt-24 md:pt-0 lg:pt-8 xl:pt-0 mt-6 lg:ml-52  xl:ml-52 ">
         <div className="container mx-auto px-4">
+          <Sidebar />
           <div className="flex flex-wrap -mx-4">
             {FoodItems.map((food, index) => (
               <div key={index} className="w-full sm:w-1/2 md:w-1/3 px-4 mb-8">

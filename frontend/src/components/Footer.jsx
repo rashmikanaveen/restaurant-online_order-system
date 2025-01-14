@@ -20,7 +20,8 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-900 text-gray-300 py-6 px-16 font-sans tracking-wide w-auto lg:ml-60  xl:ml-48">
+    <div>
+      <footer className="bg-gray-900 text-gray-300 py-6 px-16 font-sans tracking-wide w-auto ">
       <div className="flex justify-between items-center max-lg:flex-col text-center flex-wrap gap-4">
         <p className="text-[15px] leading-loose">© ReadymadeUI. All rights reserved.</p>
 
@@ -31,6 +32,7 @@ const Footer = () => {
         </ul>
       </div>
     </footer>
+    </div>
   );
 };
 
