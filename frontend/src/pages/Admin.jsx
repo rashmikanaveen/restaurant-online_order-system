@@ -258,9 +258,12 @@ const Admin = () => {
             </svg>
 
         </button>
+
+
+        {/* Main Content */}
           
         </div>
-            <section className="pt-28 sm:pt-24 md:pt-8 lg:pt-8 xl:pt-16  mt-6  lg:ml-60  xl:ml-52 md:ml-52  ">
+            <section className="pt-28 sm:pt-24 md:pt-8 lg:pt-8 xl:pt-16  mt-6  lg:ml-60  xl:ml-52 md:mt-12  ">
             <div className="overflow-x-auto w-full">
               <table  className="min-w-full bg-white table-auto">
                 <thead className="bg-gray-800 whitespace-nowrap">
