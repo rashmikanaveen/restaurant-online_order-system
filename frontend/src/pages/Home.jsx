@@ -7,6 +7,7 @@ import {getAllFoodItems} from '../actions/fooditemActions';
 import Loading from '../components/Loading';
 import Error from '../components/Error';
 import Sidebar from '../components/Sidebar';
+import Footer from '../components/Footer';
 
 
 
@@ -63,7 +64,9 @@ const Home = () => {
               <Food food={food} />
             </div>
             ))}
+            
           </div>
+          <Footer />
         </div>
         
       </div>
