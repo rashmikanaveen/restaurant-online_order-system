@@ -22,9 +22,14 @@ export const placeOrder = (token, total) => async (dispatch) => {
       userId: currentUser._id,
       cartItems,
     };
+    const config = {
+      headers: {
+        Authorization: `Bearer ${currentUser.token}`,
+      },
+    };
 
     //console.log('Sending order data to server', orderData);
-    const response = await axiosInstance.post('/api/orders/placeorder', orderData);
+    const response = await axiosInstance.post('/api/orders/placeorder', orderData,config);
     //console.log('Response received:', response.data);
     //console.log('response.data');
     dispatch({ type: 'PLACE_ORDER_SUCCESS', payload: response.data });
@@ -38,13 +43,21 @@ export const placeOrder = (token, total) => async (dispatch) => {
 
 
 export const getUserOrders = () => async (dispatch) => {
+  const token = Cookies.get('userInfo') ? JSON.parse(Cookies.get('userInfo')).token : null;
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+  
   const currentUser = Cookies.get('userInfo') ? JSON.parse(Cookies.get('userInfo')) : null;
   
   dispatch({ type: 'GET_USER_ORDER_REQUEST' });
   try {
     const userid=currentUser._id
     //console.log(userid)
-    const response = await axiosInstance.get(`/api/orders/getUserOrders/${userid}`); // Send user directly
+    const response = await axiosInstance.get(`/api/orders/getUserOrders/${userid}`,config); // Send user directly
     //console.log(response.data)
     dispatch({ type: 'GET_USER_ORDER_SUCCESS', payload: response.data });
     

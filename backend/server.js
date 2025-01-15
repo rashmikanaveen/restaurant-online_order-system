@@ -1,7 +1,7 @@
 const express = require('express');
 const db = require('./db');
 const cors = require('cors');
-
+const { protect, admin } = require('./middleware/authMiddleware');
 const FoodItem = require('./models/Foodmodel');   
 
 
@@ -19,10 +19,15 @@ app.get('/', (req, res) => {
   res.send('Welcome to the Restaurant Order System API');
 });
 
-app.use('/api/fooditems',fooditemsRoute);
+app.use('/api/fooditems', fooditemsRoute);
 app.use('/api/users',userRoute);
-app.use('/api/orders',orderRoute);
+app.use('/api/orders', protect,orderRoute);
 
+/*
+app.use('/api/admin', protect, admin, (req, res) => {
+  res.send('Admin route');
+});
+*/
 
 const PORT = process.env.PORT || 5000;
 // Start the server

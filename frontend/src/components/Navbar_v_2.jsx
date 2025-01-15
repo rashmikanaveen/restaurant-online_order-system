@@ -50,6 +50,7 @@ const Navbar_v_2 = () => {
 
                 <div className="dropdown-menu relative flex shrink-0 group">
                 <MdPerson size="2em" className="mx-4 my-4"/>
+                
 
                   <div className="dropdown-content hidden group-hover:block shadow-md p-2 bg-white rounded-md absolute top-9 right-0 w-56">
                     <div className="w-full">
@@ -67,7 +68,7 @@ const Navbar_v_2 = () => {
                             data-original="#000000"
                           ></path>
                         </svg>
-                        Account
+                        Account {currentUser.name}
                       </a>
                       <hr className="my-2 -mx-2" />
 

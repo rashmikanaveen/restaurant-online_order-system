@@ -4,10 +4,13 @@ import { userLogin } from '../actions/userActions';
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import Cookies from 'js-cookie';
+import Loading from '../components/Loading';
+import Error from '../components/Error';
 const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
 
 
     useEffect(() => {
@@ -24,6 +27,8 @@ const Login = () => {
 
 
     const dispatch=useDispatch()
+    const ordersState = useSelector((state) => state.loginUserReducer);
+    const { loading, error, currentUser } = ordersState;
     const loginuser=()=>{
         if(email==="" || password===""){
             alert("Please fill in all fields.")
@@ -37,14 +42,16 @@ const Login = () => {
             }
             console.log(user)
             dispatch(userLogin(user))
-            alert("User Registered Successfully")
+            //alert("User Registered Successfully")
         }
       }
 
   return (
-    <div className="pt-28 sm:pt-24 md:pt-0 lg:pt-8 xl:pt-0 mt-1">
+    
+    <div className="pt-28 sm:pt-24 md:pt-0 lg:pt-8 xl:pt-0 lg:mt-16 md:mt-16">
       
-      
+      {loading && <Loading />}
+      {error && <Error error="Something went wrong" />}
       <div className="font-[sans-serif]">
       <div className="min-h-screen flex fle-col items-center justify-center py-6 px-4">
         <div className="grid md:grid-cols-2 items-center gap-6 max-w-6xl w-full">

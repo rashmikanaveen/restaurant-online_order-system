@@ -1,5 +1,5 @@
 const mongoose= require("mongoose");
-
+const bcrypt = require('bcrypt');
 const userSchema=mongoose.Schema(
     {
         name: {
@@ -15,7 +15,7 @@ const userSchema=mongoose.Schema(
             required: true,
           },
           isAdmin:{
-            type:String,
+            type:Boolean,
             required: true,
             default:false
           },
@@ -27,6 +27,18 @@ const userSchema=mongoose.Schema(
         timestamps: true, // valid way to enable timestamps
       }
 )
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) {
+    return next();
+  }
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+});
 
+// Method to compare entered password with hashed password
+userSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
 
 module.exports =mongoose.model('user', userSchema);
