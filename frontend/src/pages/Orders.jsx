@@ -156,10 +156,10 @@ const Orders = () => {
                           )}
                         </dl>
   
-                        <div className="w-full md:w-auto md:ml-auto">
+                        <div className="w-full md:w-auto md:ml-auto md:mr-4 lg:mr-2">
                           <a
                            
-                            className="w-full inline-flex justify-center rounded-lg border border-blue-500 bg-blue-500 px-3 py-2 text-sm font-medium text-white hover:bg-blue-600 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:border-blue-700 dark:bg-blue-700 dark:text-white dark:hover:bg-blue-800 dark:hover:text-white dark:focus:ring-blue-800 lg:w-auto"
+                            className="w-full inline-flex justify-center rounded-lg border border-blue-500 bg-blue-500 px-3 py-2 text-sm font-medium text-white hover:bg-blue-600 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:border-blue-700 dark:bg-blue-700 dark:text-white dark:hover:bg-blue-800 dark:hover:text-white dark:focus:ring-blue-800 lg:w-auto  "
                             onClick={() => handleOrderClick(order._id)}
                           >
                             View details

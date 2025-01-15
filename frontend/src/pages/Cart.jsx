@@ -83,7 +83,7 @@ const Cart = () => {
             )}
           </div>
           {cartItems.length > 0 && (
-            <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-2xl md:mt-0 sm:md:w-48
+            <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-2xl md:w-1/3 xl:w-1/4
             ">
               <div className="mb-2 flex justify-between ">
                 <p className="text-gray-700">Subtotal</p>

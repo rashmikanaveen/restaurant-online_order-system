@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import { useDispatch ,useSelector} from 'react-redux';
 import {placeOrder} from '../actions/orderActions'
@@ -19,11 +19,25 @@ const Checkout = ({ total }) => {
     dispatch(placeOrder(token,total));
   };
 
+  useEffect(() => {
+    if (success) {
+      
+      const timer = setTimeout(() => {
+        localStorage.removeItem('cartItems');
+        
+        dispatch({ type: 'CLEAR_CART' });
+      }, 3000); 
+
+      // Cleanup the timer if the component unmounts before the timer completes
+      return () => clearTimeout(timer);
+    }
+  }, [success, dispatch]);
+
   return (
     <div>
       {loading && (<Loading/>)}
       {error && (<Error error='Something went wrong'/>)}
-      {success && (<Success success='Your Order Placed Successfully'/>)}
+      {success && (<Success success='Your Order Placed Successfully'/>) }
       <StripeCheckout
         amount={total * 100} // Amount in cents
         shippingAddress
