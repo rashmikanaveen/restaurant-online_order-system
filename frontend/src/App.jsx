@@ -30,7 +30,7 @@ function App() {
         <Route path="/orders" element={<ProtectedRoute element={Orders}/>} />
         <Route path="/orders/:orderId" element={<ProtectedRoute element={Order}/>}  />
         <Route path="/contact" element={<ContactForm />} />
-        <Route path="/admin" element={<AdminRoute element={Admin} />} />
+        <Route path="/admin/*" element={<AdminRoute element={Admin} />} />
       </Routes>
       
 
