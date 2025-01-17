@@ -4,13 +4,15 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { cartReducer } from "./reducers/cartReducer";
 import {registerNewUserReducer,loginUserReducer} from "./reducers/userReducer"
 import {placeOrderReducer,getUserOrdersReducer} from "./reducers/orderReducer"
+import {addNewFoodItemReducer} from "./reducers/foodReducers"
 
 const rootReducer = combineReducers({
   cart: cartReducer,
   registerNewUserReducer : registerNewUserReducer,
   loginUserReducer : loginUserReducer,
   placeOrderReducer : placeOrderReducer,
-  getUserOrdersReducer:getUserOrdersReducer
+  getUserOrdersReducer:getUserOrdersReducer,
+  addNewFoodItemReducer: addNewFoodItemReducer,
   
   // other reducers
 });

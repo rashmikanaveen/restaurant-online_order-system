@@ -5,19 +5,18 @@ const eatEaseSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  varients: {
+  variants: {
     type: [String], // Array of strings to represent the variants
     required: true,
   },
   prices: {
-    type: Map, // Map to associate each variant with its price
-    of: Number,
+    type: Object,
     required: true,
   },
   category: {
     type: String,
     required: true,
-    enum: ['veg', 'nonveg', 'short-eats', 'sweets', 'drinks'], // Restrict to valid categories
+   
   },
   image: {
     type: String,

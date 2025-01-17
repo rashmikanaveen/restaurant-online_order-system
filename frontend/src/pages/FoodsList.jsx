@@ -1,9 +1,35 @@
 import React from "react";
-
+import {getAllFoodItems} from '../actions/fooditemActions';
+import {useEffect,useState} from 'react';
+import Loading from '../components/Loading';
+import Error from '../components/Error';
 const FoodsList = () => {
+  const [FoodItems, setFoodItems] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+      const fetchFoodItems = async () => {
+        try {
+          const response = await getAllFoodItems();
+          setFoodItems(response);
+          setLoading(false);
+        } catch (error) {
+          setError(error.message);
+          setLoading(false);
+        }
+      };
+  
+      fetchFoodItems();
+    }, []);
+    //console.log(FoodItems);
+
+    
+  
   return (
     <div>
-      <section className="pt-12   mt-6  lg:ml-60  xl:ml-52 md:mt-12  ">
+      {loading && <Loading />}
+      {error && <Error error={error} />}
+      <section className="pt-4   mt-6  lg:ml-60  xl:ml-52 md:mt-12  ">
         <div className="overflow-x-auto w-full">
             <h1 className="text-2xl font-semibold text-gray-800 mb-4">Foods List</h1>
 
@@ -25,12 +51,29 @@ const FoodsList = () => {
                 </th>
               </tr>
             </thead>
+            
 
             <tbody className="whitespace-nowrap">
-              <tr className="even:bg-blue-50">
-                <td className="p-4 text-sm text-black">John Doe</td>
-                <td className="p-4 text-sm text-black">john@example.com</td>
-                <td className="p-4 text-sm text-black">Admin</td>
+
+
+
+            {FoodItems.map((food) => ( 
+              
+              
+              <tr key={food._id} className="even:bg-blue-50">
+                <td className="p-4 text-sm text-black">{food.name}</td>
+                <td className="p-4 text-sm text-black">
+                {food.prices && typeof food.prices === 'object' ? (
+                  Object.entries(food.prices).map(([size, price], index) => (
+                    <span key={index} className="block">
+                      {size}: {price}
+                    </span>
+                  ))
+                ) : (
+                  <span className="block">N/A</span>
+                )}
+                </td>
+                <td className="p-4 text-sm text-black">{food.category}</td>
                 
                 <td className="p-4">
                   <button className="mr-4" title="Edit">
@@ -67,6 +110,13 @@ const FoodsList = () => {
                   </button>
                 </td>
               </tr>
+              
+              
+              
+              ) )}
+
+
+              
             </tbody>
           </table>
         </div>

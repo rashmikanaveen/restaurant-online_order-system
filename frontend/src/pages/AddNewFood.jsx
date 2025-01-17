@@ -1,76 +1,137 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch,useSelector } from "react-redux";
+import {addNewFoodItem} from "../actions/fooditemActions";
+import Success from "../components/Success";
+import Error from "../components/Error";
+import Loading from "../components/Loading";
 
 const AddNewFood = () => {
-  return (
-    <div>
-      <section className="pt-12   mt-6  lg:ml-60  xl:ml-52 md:mt-12">
-        <div className="overflow-x-auto w-full">
-          <table className="min-w-full bg-white table-auto ">
-            <thead className="bg-gray-800 whitespace-nowrap">
-              <tr>
-                <th className="p-4 text-left text-sm font-medium text-white">
-                  Name
-                </th>
-                <th className="p-4 text-left text-sm font-medium text-white">
-                  Email
-                </th>
-                <th className="p-4 text-left text-sm font-medium text-white">
-                  Role
-                </th>
-                <th className="p-4 text-left text-sm font-medium text-white">
-                  Joined At
-                </th>
-                <th className="p-4 text-left text-sm font-medium text-white">
-                  Actions
-                </th>
-              </tr>
-            </thead>
+  const [name, setName] = useState('');
+  const [category, setCategory] = useState('');
+  const [image, setImage] = useState('');
+  const [description, setDescription] = useState('');
+  const [variants, setVariants] = useState([{ size: '', price: '' }]);
 
-            <tbody className="whitespace-nowrap">
-              <tr className="even:bg-blue-50">
-                <td className="p-4 text-sm text-black">John Doe</td>
-                <td className="p-4 text-sm text-black">john@example.com</td>
-                <td className="p-4 text-sm text-black">Admin</td>
-                <td className="p-4 text-sm text-black">2022-05-15</td>
-                <td className="p-4">
-                  <button className="mr-4" title="Edit">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-5 fill-blue-500 hover:fill-blue-700"
-                      viewBox="0 0 348.882 348.882"
-                    >
-                      <path
-                        d="m333.988 11.758-.42-.383A43.363 43.363 0 0 0 304.258 0a43.579 43.579 0 0 0-32.104 14.153L116.803 184.231a14.993 14.993 0 0 0-3.154 5.37l-18.267 54.762c-2.112 6.331-1.052 13.333 2.835 18.729 3.918 5.438 10.23 8.685 16.886 8.685h.001c2.879 0 5.693-.592 8.362-1.76l52.89-23.138a14.985 14.985 0 0 0 5.063-3.626L336.771 73.176c16.166-17.697 14.919-45.247-2.783-61.418zM130.381 234.247l10.719-32.134.904-.99 20.316 18.556-.904.99-31.035 13.578zm184.24-181.304L182.553 197.53l-20.316-18.556L294.305 34.386c2.583-2.828 6.118-4.386 9.954-4.386 3.365 0 6.588 1.252 9.082 3.53l.419.383c5.484 5.009 5.87 13.546.861 19.03z"
-                        data-original="#000000"
-                      />
-                      <path
-                        d="M303.85 138.388c-8.284 0-15 6.716-15 15v127.347c0 21.034-17.113 38.147-38.147 38.147H68.904c-21.035 0-38.147-17.113-38.147-38.147V100.413c0-21.034 17.113-38.147 38.147-38.147h131.587c8.284 0 15-6.716 15-15s-6.716-15-15-15H68.904C31.327 32.266.757 62.837.757 100.413v180.321c0 37.576 30.571 68.147 68.147 68.147h181.798c37.576 0 68.147-30.571 68.147-68.147V153.388c.001-8.284-6.715-15-14.999-15z"
-                        data-original="#000000"
-                      />
-                    </svg>
-                  </button>
-                  <button className="mr-4" title="Delete">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-5 fill-red-500 hover:fill-red-700"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z"
-                        data-original="#000000"
-                      />
-                      <path
-                        d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z"
-                        data-original="#000000"
-                      />
-                    </svg>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+  const dispatch = useDispatch();
+  const addfoodstate=useSelector(state=>state.addNewFoodItemReducer);
+  const {loading,success,error}=addfoodstate;
+
+  const handleVariantChange = (index, field, value) => {
+    const newVariants = [...variants];
+    newVariants[index][field] = field === 'price' ? Number(value) : value;
+    setVariants(newVariants);
+  };
+
+  const handleAddVariant = () => {
+    setVariants([...variants, { size: '', price: '' }]);
+  };
+
+  const handleRemoveVariant = (index) => {
+    const newVariants = variants.filter((_, i) => i !== index);
+    setVariants(newVariants);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const prices = variants.reduce((acc, variant) => {
+      acc[variant.size] = Number(variant.price);
+      return acc;
+    }, {});
+    const sizes = variants.map(variant => variant.size);
+    const newFood = {
+      name,
+      description,
+      prices,
+      category,
+      image,
+      variants: sizes,
+    };
+    dispatch(addNewFoodItem(newFood));
+    //console.log(newFood);
+  };
+
+  return (
+    <div className="pt-4 mt-6 lg:ml-60 xl:ml-52 md:mt-12">
+      <form onSubmit={handleSubmit} className="space-y-4 font-[sans-serif] text-[#333] max-w-md mx-auto">
+        <h1 className="text-2xl font-semibold text-gray-800 mb-4">Add New Food</h1>
+        {loading && <Loading />}
+        {error && <Error error={error} />}
+        {success && <Success message="Food Added Successfully" />}
+        <div className=" flex items-center">
+          <input
+            type="text"
+            placeholder="Enter Food Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="px-4 py-3 bg-[#f0f1f2] focus:bg-transparent w-full text-sm border outline-[#007bff] rounded transition-all"
+            required
+          />
         </div>
-      </section>
+
+        {variants.map((variant, index) => (
+          <div key={index} className=" flex items-center space-x-2">
+            <input
+              type="text"
+              placeholder="Enter Variant Size"
+              value={variant.size}
+              onChange={(e) => handleVariantChange(index, 'size', e.target.value)}
+              className="px-4 py-3 bg-[#f0f1f2] focus:bg-transparent w-full text-sm border outline-[#007bff] rounded transition-all"
+              required
+            />
+            <input
+              type="number"
+              placeholder="Enter Price"
+              value={variant.price}
+              onChange={(e) => handleVariantChange(index, 'price', e.target.value)}
+              className="px-4 py-3 bg-[#f0f1f2] focus:bg-transparent w-full text-sm border outline-[#007bff] rounded transition-all"
+              required
+            />
+            <button type="button" onClick={() => handleRemoveVariant(index)} className="px-2 py-1 bg-red-500 text-white rounded">
+              Remove
+            </button>
+          </div>
+        ))}
+
+        <button type="button" onClick={handleAddVariant} className="px-4 py-2 bg-blue-500 text-white rounded">
+          Add Variant
+        </button>
+
+        <div className=" flex items-center">
+          <input
+            type="text"
+            placeholder="Enter Category"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="px-4 py-3 bg-[#f0f1f2] focus:bg-transparent w-full text-sm border outline-[#007bff] rounded transition-all"
+            required
+          />
+        </div>
+
+        <div className=" flex items-center">
+          <input
+            type="text"
+            placeholder="Enter Image URL"
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
+            className="px-4 py-3 bg-[#f0f1f2] focus:bg-transparent w-full text-sm border outline-[#007bff] rounded transition-all"
+            required
+          />
+        </div>
+
+        <div className=" flex items-center">
+          <textarea
+            placeholder="Enter Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="px-4 py-3 bg-[#f0f1f2] focus:bg-transparent w-full text-sm border outline-[#007bff] rounded transition-all"
+            required
+          />
+        </div>
+
+        <button type="submit" className="px-4 py-2 bg-green-500 text-white rounded">
+          Add Food
+        </button>
+      </form>
     </div>
   );
 };

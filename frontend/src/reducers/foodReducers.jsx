@@ -26,3 +26,22 @@ const foodItemsSlice = createSlice({
 });
 
 export const getAllFoodItemsReducer = foodItemsSlice.reducer;
+
+
+export const addNewFoodItemReducer = (state = { }, action) => {
+  switch (action.type) {
+    case 'ADD_FOODITEM_REQUEST':
+      return { 
+        loading: true,
+        ...state
+       };
+    case 'ADD_FOODITEM_SUCCESS':
+      return { 
+        loading: false, 
+        success: true };
+    case 'ADD_FOODITEM_FAILED':
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+}

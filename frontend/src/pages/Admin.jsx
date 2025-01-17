@@ -64,39 +64,23 @@ const Admin = () => {
                 Admin Actions
               </h6>
               <ul className="mt-3 space-y-2 ">
-                <li >
-                  <a
-                    
-                    className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all"
-                  >
-                    <Link to="/admin/users">Users List      </Link>
-                  </a>
+                <li className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all">
+                <Link to="/admin/users">Users List      </Link>
+                  
                 </li>
 
-                <li>
-                  <a
-                    
-                    className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all"
-                  >
-                    <Link to="/admin/foodsList">Food List</Link>
-                  </a>
+                <li className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all">
+                <Link to="/admin/foodsList">Food List</Link>
+                  
                 </li>
 
-                <li>
-                  <a
-                    
-                    className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all"
-                  >
-                    <Link to="/admin/addNewFood">Add New Food</Link>
-                  </a>
+                <li className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all">
+                <Link to="/admin/addNewFood">Add New Food</Link>
+                  
                 </li>
-                <li>
-                  <a
-                    
-                    className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all"
-                  >
-                    <Link to="/admin/orders">Orders List</Link>
-                  </a>
+                <li className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all">
+                <Link to="/admin/orders">Orders List</Link>
+                  
                 </li>
               </ul>
             </div>

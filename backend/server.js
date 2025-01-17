@@ -12,6 +12,7 @@ app.use(cors());
 const fooditemsRoute = require('./routes/fooditemsRoute');
 const userRoute=require('./routes/userRoute');
 const orderRoute=require('./routes/orderRoute');
+const adminRoute=require('./routes/adminActionsRoute');
 
 
 // Sample route
@@ -22,6 +23,7 @@ app.get('/', (req, res) => {
 app.use('/api/fooditems', fooditemsRoute);
 app.use('/api/users',userRoute);
 app.use('/api/orders', protect,orderRoute);
+app.use('/api/adminActions', protect,adminRoute);
 
 /*
 app.use('/api/admin', protect, admin, (req, res) => {

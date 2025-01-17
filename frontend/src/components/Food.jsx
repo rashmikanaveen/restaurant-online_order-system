@@ -71,7 +71,7 @@ const Food = ({ food }) => {
             onChange={(e) => setQuantity(e.target.value)}
             
           >
-            {[...Array(100).keys()].map((x, index) => {
+            {[...Array(30).keys()].map((x, index) => {
               return (
                 <option key={index} value={index + 1}>
                   {index + 1}
@@ -98,7 +98,7 @@ const Food = ({ food }) => {
         </div>
       </div>
       <CustomModal show={show} handleClose={handleClose} title={food.name}>
-      <img src={food.image} className="w-full h-auto mx-auto" alt={food.name} />
+      <img src={food.image} className="w-72 h-72 object-cover mx-auto " alt={food.name} />
       <p>{food.description}</p>
       </CustomModal>
       

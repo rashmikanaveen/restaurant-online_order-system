@@ -29,6 +29,9 @@ const Navbar_v_2 = () => {
   const handleOrdersClick = () => {
     navigate("/orders");
   };
+  const handleAdminClick = () => {
+    navigate("/admin");
+  }
 
   return (
     <div>
@@ -71,6 +74,18 @@ const Navbar_v_2 = () => {
                         Account {currentUser.name}
                       </a>
                       <hr className="my-2 -mx-2" />
+
+                      {currentUser.isAdmin ?(
+                        <a
+                        onClick={handleAdminClick}
+                        className="text-sm text-gray-800 cursor-pointer flex items-center p-2 rounded-md hover:bg-gray-100 dropdown-item transition duration-300 ease-in-out pl-10"
+                      >
+                        Admin Dashboard
+                        
+                      </a>
+                      ):(
+                        <div></div>
+                      )}
 
                       <a
                         onClick={handleOrdersClick}
