@@ -5,6 +5,7 @@ import { cartReducer } from "./reducers/cartReducer";
 import {registerNewUserReducer,loginUserReducer} from "./reducers/userReducer"
 import {placeOrderReducer,getUserOrdersReducer} from "./reducers/orderReducer"
 import {addNewFoodItemReducer} from "./reducers/foodReducers"
+import {categoryReducer} from "./reducers/categoryReducer"
 
 const rootReducer = combineReducers({
   cart: cartReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   placeOrderReducer : placeOrderReducer,
   getUserOrdersReducer:getUserOrdersReducer,
   addNewFoodItemReducer: addNewFoodItemReducer,
+  categoryReducer:categoryReducer
   
   // other reducers
 });

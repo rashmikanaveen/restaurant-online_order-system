@@ -10,3 +10,6 @@ export const registerNewUser = (user) => async (dispatch) => {
     dispatch({ type: 'USER_REGISTER_FAILED', payload: error.response.data.message });
   }
 };
+
+
+

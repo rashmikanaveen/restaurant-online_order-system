@@ -8,6 +8,8 @@ import FoodsList from "./FoodsList";
 import UsersList from "./UsersList";
 import OrdersList from "./OrdersList";
 import AddNewFood from "./AddNewFood";
+import AddNewFoodCategory from "./AddNewFoodCategory";
+
 
 const Admin = () => {
   const currentUser = Cookies.get("userInfo")
@@ -82,6 +84,10 @@ const Admin = () => {
                 <Link to="/admin/orders">Orders List</Link>
                   
                 </li>
+                <li className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all">
+                <Link to="/admin/addNewFoodCategory">Add New Food Category</Link>
+                  
+                </li>
               </ul>
             </div>
           </div>
@@ -112,6 +118,7 @@ const Admin = () => {
             <Route path="users" element={<UsersList/>} />
             <Route path="orders" element={<OrdersList/>} />
             <Route path="addNewFood" element={<AddNewFood/>} />
+            <Route path="addNewFoodCategory" element={<AddNewFoodCategory/>} />
           </Routes>
         </div>
       </div>

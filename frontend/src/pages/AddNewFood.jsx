@@ -15,6 +15,7 @@ const AddNewFood = () => {
   const dispatch = useDispatch();
   const addfoodstate=useSelector(state=>state.addNewFoodItemReducer);
   const {loading,success,error}=addfoodstate;
+  
 
   const handleVariantChange = (index, field, value) => {
     const newVariants = [...variants];
