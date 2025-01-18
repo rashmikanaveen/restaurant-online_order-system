@@ -19,6 +19,10 @@ const AddNewFoodCategory = () => {
 
   const handleAddCategory = (e) => {
     e.preventDefault();
+    if (!newCategory.trim()) {
+      setErrorMessage('Category name cannot be empty');
+      return;
+    }
     if (categories.some(category => category.name.toLowerCase() === newCategory.toLowerCase())) {
       setErrorMessage('Category already exists');
     } else {
@@ -30,13 +34,12 @@ const AddNewFoodCategory = () => {
 
   return (
     <div className="pt-4 mt-6 lg:ml-60 xl:ml-52 md:mt-12">
-      
+      <h1 className="text-2xl font-semibold text-gray-800 mb-4">Manage Food Categories</h1>
       {loading && <Loading />}
       {error && <Error error={error} />}
       {success && <Success message="Category added successfully" />}
       {errorMessage && <Error error={errorMessage} />}
       <div className="space-y-4 font-[sans-serif] text-[#333] max-w-md mx-auto">
-        <h1 className="text-2xl font-semibold text-gray-800">Add New Food Category</h1>
         <form onSubmit={handleAddCategory} className="relative flex items-center space-x-2">
           <input
             type="text"

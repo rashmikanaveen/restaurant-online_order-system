@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import { useDispatch,useSelector } from "react-redux";
 import {addNewFoodItem} from "../actions/fooditemActions";
+import { getCategories } from '../actions/categoryActions';
 import Success from "../components/Success";
 import Error from "../components/Error";
 import Loading from "../components/Loading";
@@ -15,6 +16,14 @@ const AddNewFood = () => {
   const dispatch = useDispatch();
   const addfoodstate=useSelector(state=>state.addNewFoodItemReducer);
   const {loading,success,error}=addfoodstate;
+
+  const categoryState = useSelector((state) => state.categoryReducer);
+  const { loading: loadingCategories, error: errorCategories, categories } = categoryState;
+
+  useEffect(() => {
+      dispatch(getCategories());
+    }, [dispatch]);
+
   
 
   const handleVariantChange = (index, field, value) => {
@@ -98,14 +107,21 @@ const AddNewFood = () => {
         </button>
 
         <div className=" flex items-center">
-          <input
-            type="text"
-            placeholder="Enter Category"
+          {loadingCategories && <Loading />}
+          {errorCategories && <Error error={errorCategories} />}
+          <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             className="px-4 py-3 bg-[#f0f1f2] focus:bg-transparent w-full text-sm border outline-[#007bff] rounded transition-all"
             required
-          />
+          >
+            <option value="" disabled>Select Category</option>
+            {categories.map((category) => (
+              <option key={category._id} value={category.name}>
+                {category.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className=" flex items-center">

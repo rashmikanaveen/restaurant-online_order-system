@@ -26,7 +26,7 @@ const Checkout = ({ total }) => {
         localStorage.removeItem('cartItems');
         
         dispatch({ type: 'CLEAR_CART' });
-      }, 3000); 
+      }, 1000); 
 
       // Cleanup the timer if the component unmounts before the timer completes
       return () => clearTimeout(timer);
