@@ -3,6 +3,7 @@ import {getAllFoodItems} from '../actions/fooditemActions';
 import {useEffect,useState} from 'react';
 import Loading from '../components/Loading';
 import Error from '../components/Error';
+import { BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
 const FoodsList = () => {
   const [FoodItems, setFoodItems] = useState([]);
   const [error, setError] = useState(null);
@@ -29,9 +30,10 @@ const FoodsList = () => {
     <div>
       {loading && <Loading />}
       {error && <Error error={error} />}
+      
       <section className="pt-4   mt-6  lg:ml-60  xl:ml-52 md:mt-12  ">
         <div className="overflow-x-auto w-full">
-            <h1 className="text-2xl font-semibold text-gray-800 mb-4">Foods List</h1>
+            <h1 className="text-2xl font-semibold text-gray-800 mb-4">Foods List({FoodItems.length})</h1>
 
           <table className="min-w-full bg-white table-auto ">
             <thead className="bg-gray-800 whitespace-nowrap">
@@ -76,7 +78,9 @@ const FoodsList = () => {
                 <td className="p-4 text-sm text-black">{food.category}</td>
                 
                 <td className="p-4">
-                  <button className="mr-4" title="Edit">
+                <div className="flex space-x-4">
+                <Link to={`/admin/editFood/${food._id}`} className="mr-4" >
+                  
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-5 fill-blue-500 hover:fill-blue-700"
@@ -91,8 +95,10 @@ const FoodsList = () => {
                         data-original="#000000"
                       />
                     </svg>
-                  </button>
-                  <button className="mr-4" title="Delete">
+                  
+                  </Link>
+                  <Link to="/admin" className="mr-4" >
+                  
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-5 fill-red-500 hover:fill-red-700"
@@ -107,7 +113,9 @@ const FoodsList = () => {
                         data-original="#000000"
                       />
                     </svg>
-                  </button>
+                  
+                  </Link>
+                  </div>
                 </td>
               </tr>
               

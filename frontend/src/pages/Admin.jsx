@@ -9,7 +9,7 @@ import UsersList from "./UsersList";
 import OrdersList from "./OrdersList";
 import AddNewFood from "./AddNewFood";
 import AddNewFoodCategory from "./AddNewFoodCategory";
-
+import EditFoods from "./EditFoods";
 
 const Admin = () => {
   const currentUser = Cookies.get("userInfo")
@@ -125,6 +125,7 @@ const Admin = () => {
             <Route path="orders" element={<OrdersList/>} />
             <Route path="addNewFood" element={<AddNewFood/>} />
             <Route path="addNewFoodCategory" element={<AddNewFoodCategory/>} />
+            <Route path="editFood/:foodId" element={<EditFoods/>} />
           </Routes>
         </div>
       </div>
@@ -136,3 +137,6 @@ const Admin = () => {
 };
 
 export default Admin;
+
+
+
