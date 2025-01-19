@@ -54,7 +54,7 @@ const Admin = () => {
                       data-original="#000000"
                     ></path>
                   </svg>
-                  Dashboard
+                  Admin Dashboard
                   </Link>
                   
                 </li>
