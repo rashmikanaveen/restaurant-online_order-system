@@ -38,7 +38,7 @@ const Navbar_v_2 = () => {
       <header className="flex left-0 shadow-md px-4 sm:px-7 bg-white min-h-[70px] tracking-wide z-[110] fixed top-0 w-full items ">
         <div className="flex flex-wrap items-center justify-between gap-4 w-full relative">
           <a href="/">
-            <img src="./src/assets/EatEase.png" alt="logo" className="w-32" />
+            <img src="/src/assets/EatEase.png" alt="logo" className="w-32" />
           </a>
 
           <div>

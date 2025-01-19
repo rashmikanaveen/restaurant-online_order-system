@@ -3,7 +3,7 @@ import { use } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
-
+import AdminDashboard from "./adminDashboard";
 import FoodsList from "./FoodsList";
 import UsersList from "./UsersList";
 import OrdersList from "./OrdersList";
@@ -35,12 +35,11 @@ const Admin = () => {
             }`}
           >
             <ul className="space-y-2 ">
-              <li>
-                <a
-                  href="/"
-                  className="text-gray-800 text-sm flex items-center hover:bg-gray-100 rounded-md px-4 py-2 transition-all  sm:mt-8 xl:mt-0 lg:mt-0"
-                >
-                  <svg
+            <li >
+            
+              
+                <Link to="/admin/" className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all">
+                <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
                     className="w-[18px] h-[18px] mr-3"
@@ -55,9 +54,10 @@ const Admin = () => {
                       data-original="#000000"
                     ></path>
                   </svg>
-                  <span>Dashboard</span>
-                </a>
-              </li>
+                  Dashboard
+                  </Link>
+                  
+                </li>
             </ul>
 
 
@@ -66,26 +66,31 @@ const Admin = () => {
                 Admin Actions
               </h6>
               <ul className="mt-3 space-y-2 ">
-                <li className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all">
-                <Link to="/admin/users">Users List      </Link>
+                <li >
+                <Link to="/admin/users" className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all">
+                Users List      </Link>
                   
                 </li>
 
-                <li className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all">
-                <Link to="/admin/foodsList">Food List</Link>
+                <li >
+                <Link to="/admin/foodsList" className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all">
+                Food List</Link>
                   
                 </li>
 
-                <li className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all">
-                <Link to="/admin/addNewFood">Add New Food</Link>
+                <li >
+                <Link to="/admin/addNewFood" className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all">
+                Add New Food</Link>
                   
                 </li>
-                <li className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all">
-                <Link to="/admin/orders">Orders List</Link>
+                <li>
+                <Link to="/admin/orders"  className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all">
+                Orders List</Link>
                   
                 </li>
-                <li className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all">
-                <Link to="/admin/addNewFoodCategory">Add New Food Category</Link>
+                <li >
+                <Link to="/admin/addNewFoodCategory" className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all">
+                Add New Food Category</Link>
                   
                 </li>
               </ul>
@@ -113,7 +118,8 @@ const Admin = () => {
         </button>
         <div>
           <Routes>
-          <Route path="" element={<UsersList/>} />
+          <Route path="" element={<AdminDashboard/>} />
+          <Route path="users" element={<UsersList/>} />
             <Route path="foodsList" element={<FoodsList/>} />
             <Route path="users" element={<UsersList/>} />
             <Route path="orders" element={<OrdersList/>} />

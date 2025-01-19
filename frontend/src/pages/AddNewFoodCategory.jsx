@@ -40,7 +40,7 @@ const AddNewFoodCategory = () => {
       {success && <Success message="Category added successfully" />}
       {errorMessage && <Error error={errorMessage} />}
       <div className="space-y-4 font-[sans-serif] text-[#333] max-w-md mx-auto">
-        <form onSubmit={handleAddCategory} className="relative flex items-center space-x-2">
+        <form onSubmit={handleAddCategory} className=" flex items-center space-x-2">
           <input
             type="text"
             placeholder="Enter New Category"
