@@ -45,5 +45,30 @@ router.post('/addCategory', async (req, res) => {
 });
 
 
+router.post ('/editfooditem/:id', async (req, res) => {
+
+
+    try {
+        const foodItem = await FoodItem.findById(req.params.id);
+        if (foodItem) {
+            foodItem.name = req.body.name;
+            foodItem.variants = req.body.variants;
+            foodItem.description = req.body.description;
+            foodItem.prices = req.body.prices;
+            foodItem.category = req.body.category;
+            foodItem.image = req.body.image;
+
+            //console.log(foodItem)
+            const updatedFoodItem = await foodItem.save();
+            res.send('Food item updated successfully');
+        } else {
+            res.status(404).json({ message: 'Food item not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+
 
 module.exports = router;

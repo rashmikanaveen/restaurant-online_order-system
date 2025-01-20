@@ -5,7 +5,7 @@ import Success from "../components/Success";
 import Error from "../components/Error";
 import Loading from "../components/Loading";
 import { useParams, useNavigate } from "react-router-dom";
-import { getAllFoodItems } from "../actions/fooditemActions"; // Import the action to fetch all food items
+import { getAllFoodItems,editFoodItem } from "../actions/fooditemActions"; // Import the action to fetch all food items
 
 const EditFoods = () => {
   const { foodId } = useParams();
@@ -21,8 +21,8 @@ const EditFoods = () => {
 
   const dispatch = useDispatch();
 
-  //const updateFoodState = useSelector(state => state.updateFoodItemReducer);
-  //const { loading: updateLoading, success, error: updateError } = updateFoodState;
+  const updateFoodState = useSelector(state => state.editItemReducer);
+  const { loading: updateLoading, success, error: updateError } = updateFoodState;
 
   const categoryState = useSelector((state) => state.categoryReducer);
   const {
@@ -99,8 +99,8 @@ const EditFoods = () => {
       variants: prices.map((price) => price.variant),
     };
     // Update food item (replace with your actual update logic)
-    // dispatch(updateFoodItem(updatedFood));
-    console.log(updatedFood);
+    dispatch(editFoodItem(updatedFood));
+    //console.log(updatedFood);
   };
 
   if (!currentFood) {
@@ -234,11 +234,11 @@ const EditFoods = () => {
             >
               Update Food
             </button>
-            {/*
+            
                         {updateLoading && <Loading />}
                         {updateError && <Error error={updateError} />}
                         {success && <Success message="Food item updated successfully" />}
-                         */}
+                         
           </>
         )}
       </form>

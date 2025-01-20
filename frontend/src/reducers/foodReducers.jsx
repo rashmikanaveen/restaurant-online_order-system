@@ -45,3 +45,21 @@ export const addNewFoodItemReducer = (state = { }, action) => {
       return state;
   }
 }
+
+export const editItemReducer = (state = { }, action) => {
+  switch (action.type) {
+    case 'EDIT_FOODITEM_REQUEST':
+      return { 
+        loading: true,
+        ...state
+       };
+    case 'EDIT_FOODITEM_SUCCESS':
+      return { 
+        loading: false, 
+        success: true };
+    case 'EDIT_FOODITEM_FAILED':
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+}

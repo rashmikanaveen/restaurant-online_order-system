@@ -24,7 +24,7 @@ export const getAllFoodItems = async () => {
   
 };
 
-export const addNewFoodItem =(newFood) =>dispatch =>{
+export const addNewFoodItem =(newFood) =>async (dispatch) =>{
   dispatch({type:"ADD_FOODITEM_REQUEST"})
   try{
     const token = Cookies.get('userInfo') ? JSON.parse(Cookies.get('userInfo')).token : null;
@@ -34,7 +34,7 @@ export const addNewFoodItem =(newFood) =>dispatch =>{
       },
     };
     console.log(newFood);
-    const response = axiosInstance.post("/api/adminActions/addnewfooditem",newFood,config);
+    const response =await axiosInstance.post("/api/adminActions/addnewfooditem",newFood,config);
     dispatch({type:"ADD_FOODITEM_SUCCESS",payload:response.data});
 
 
@@ -47,3 +47,22 @@ export const addNewFoodItem =(newFood) =>dispatch =>{
 
 
 }
+
+export const editFoodItem = (updatedFood) => async (dispatch) => {
+  dispatch({ type: "EDIT_FOODITEM_REQUEST" });
+  try {
+    const token = Cookies.get('userInfo') ? JSON.parse(Cookies.get('userInfo')).token : null;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    console.log(updatedFood._id);
+    const response = await axiosInstance.post(`/api/adminActions/editfooditem/${updatedFood._id}`, updatedFood, config);
+    dispatch({ type: "EDIT_FOODITEM_SUCCESS", payload: response.data });
+  } catch (error) {
+    const errorMessage = error.response && error.response.data.message ? error.response.data.message : error.message;
+    dispatch({ type: "EDIT_FOODITEM_FAILED", payload: errorMessage });
+  }
+};

@@ -9,6 +9,9 @@ dotenv.config();
 const password = process.env.DB_PASSWORD
 const url = `mongodb+srv://rashmikanaveen734:${password}@cluster0.rt8uw.mongodb.net/EatEase`
 
+
+
+
 mongoose.set('strictQuery', false);
 
 mongoose.connect(url, {
