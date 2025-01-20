@@ -66,3 +66,23 @@ export const editFoodItem = (updatedFood) => async (dispatch) => {
     dispatch({ type: "EDIT_FOODITEM_FAILED", payload: errorMessage });
   }
 };
+
+
+
+export const deleteFoodAction =  async(id) => {
+  try {
+    const token = Cookies.get('userInfo') ? JSON.parse(Cookies.get('userInfo')).token : null;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    //console.log(id);
+
+    const response = await axiosInstance.delete(`/api/adminActions/deletefooditem/${id}`, config);
+    console.log(response.data);
+    window.location.reload();
+  } catch (error) {
+    console.error(error);
+  }
+}

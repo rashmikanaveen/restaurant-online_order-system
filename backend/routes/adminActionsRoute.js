@@ -70,5 +70,20 @@ router.post ('/editfooditem/:id', async (req, res) => {
 });
 
 
+router.delete('/deletefooditem/:id', async (req, res) => {
+    try {
+        const food= await FoodItem.findById(req.params.id);
+        if(food){
+            const foodItem = await FoodItem.findByIdAndDelete(req.params.id);
+            res.send('Food item deleted successfully');
+        }
+        
+    } catch (error) {
+        console.error('Error deleting food item:', error);
+        res.status(500).json({ message: error.message });
+    }
+});
+
+
 
 module.exports = router;

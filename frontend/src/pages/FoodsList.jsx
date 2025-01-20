@@ -4,6 +4,8 @@ import {useEffect,useState} from 'react';
 import Loading from '../components/Loading';
 import Error from '../components/Error';
 import { BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
+
+import{deleteFoodAction} from '../actions/fooditemActions';
 const FoodsList = () => {
   const [FoodItems, setFoodItems] = useState([]);
   const [error, setError] = useState(null);
@@ -23,6 +25,19 @@ const FoodsList = () => {
       fetchFoodItems();
     }, []);
     //console.log(FoodItems);
+
+
+    const deleteFood =  (id) => {
+      try {
+        if (window.confirm('Are you sure you want to delete this food item?')) {
+          deleteFoodAction(id);
+        }
+        
+        
+      } catch (error) {
+        console.error(error);
+      }
+    }
 
     
   
@@ -97,7 +112,7 @@ const FoodsList = () => {
                     </svg>
                   
                   </Link>
-                  <Link to="/admin" className="mr-4" >
+                  <button onClick={(e)=>(deleteFood(food._id))} className="mr-4" >
                   
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +129,7 @@ const FoodsList = () => {
                       />
                     </svg>
                   
-                  </Link>
+                  </button>
                   </div>
                 </td>
               </tr>
