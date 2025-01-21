@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../actions/categoryActions";
 const Sidebar = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
+
   const currentUser = Cookies.get("userInfo")
     ? JSON.parse(Cookies.get("userInfo"))
     : null;
@@ -17,9 +19,17 @@ const Sidebar = () => {
     dispatch(getCategories());
   }, [dispatch]);
 
-  console.log(categories);
+  //console.log(categories);
   const handleToggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
+  };
+
+  const handleInputChange = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  const handleButtonClick = () => {
+    console.log(searchValue);
   };
 
   return (
@@ -38,10 +48,12 @@ const Sidebar = () => {
               <div className="flex rounded-md border-2 border-blue-500 overflow-hidden max-w-[14rem] mx-auto font-[sans-serif]">
                 <input
                   type="text"
+                  onChange={handleInputChange}
                   placeholder="Search Something..."
                   className="w-full outline-none bg-white text-gray-600 text-sm px-4 py-3"
                 />
                 <button
+                onClick={handleButtonClick}
                   type="button"
                   className="flex items-center justify-center bg-[#007bff] px-5"
                 >
@@ -63,16 +75,14 @@ const Sidebar = () => {
             <ul className="mt-3 space-y-2">
               
               {categories.map((category) => (
-                console.log(category),
-                <li key={category._id} className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all">
-                <input
-                  id={category._id}
-                  type="checkbox"
-                  className="w-4 h-4 mr-3 focus:ring-1 focus:ring-offset-slate-200 focus:ring-offset-4 focus:ring-[#007bff]"
-                />
+                
+                <li key={category._id} 
+                //onClick={() => {console.log(category.name)}}
+                className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all">
                 <label  className="text-black text-sm">
                   {category.name}
                 </label>
+                
               </li>
               ))}
               

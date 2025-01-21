@@ -35,7 +35,7 @@ router.post('/addCategory', async (req, res) => {
             name: req.body.name
         });
 
-        console.log(newCategory)
+        //console.log(newCategory)
 
         const savedCategory = await newCategory.save();
         res.send('New category added successfully');
