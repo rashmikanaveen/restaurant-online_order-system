@@ -65,3 +65,25 @@ export const getUserOrders = () => async (dispatch) => {
     dispatch({ type: 'GET_USER_ORDER_FAILED', payload: error.response.data.message });
   }
 };
+
+
+
+
+export const getAllOrders = () => async (dispatch) => {
+  const token = Cookies.get('userInfo') ? JSON.parse(Cookies.get('userInfo')).token : null;
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+  
+  dispatch({ type: 'GET_ALL_ORDER_REQUEST' });
+  try {
+    const response = await axiosInstance.get('/api/adminActions/getAllOrders',config); // Send user directly
+    dispatch({ type: 'GET_ALL_ORDER_SUCCESS', payload: response.data });
+    
+  } catch (error) {
+    dispatch({ type: 'GET_ALL_ORDER_FAILED', payload: error.response.data.message });
+  }
+};
