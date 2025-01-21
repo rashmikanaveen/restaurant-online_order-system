@@ -24,34 +24,38 @@ const Order = () => {
   //const total = order.orderAmount;
   const order = orders ? orders.find((e) => e._id === orderId) : null;
 
-  const handleDownloadBill = () => {
-    const doc = new jsPDF();
-    const storeName = "EatEase"; // Store name
-    const orderDate = new Date(order.updatedAt);
-    const formattedDate = orderDate.toLocaleDateString();
-    const formattedTime = orderDate.toLocaleTimeString();
+  const logoUrl = "/src/assets/EatEase.png"
 
-    doc.setFontSize(20); // Increase font size for store name
-    doc.text(storeName, 10, 20); // Store name at the top with increased font size
+const handleDownloadBill = () => {
+  const doc = new jsPDF();
+  const storeName = "EatEase"; // Store name
+  const orderDate = new Date(order.updatedAt);
+  const formattedDate = orderDate.toLocaleDateString();
+  const formattedTime = orderDate.toLocaleTimeString();
 
-    doc.setFontSize(12); // Reset font size for other text
-    doc.text(`Order ID: ${order._id}`, 10, 40); // Adjust y-coordinate to create gap
-    doc.text(`Date: ${formattedDate}`, 10, 50);
-    doc.text(`Time: ${formattedTime}`, 10, 60);
-    doc.text(`Price: Rs.${order.orderAmount}/-`, 10, 70);
-    doc.text(`Status: ${order.isDelivered? 'Delivered':'In transit'}`, 10, 80);
-    doc.text('Items:', 10, 90);
+  
+  doc.addImage(logoUrl, 'PNG', 10, 10, 50, 20, '', 'SLOW'); 
 
-    let yOffset = 100;
-    order.orderItems.forEach((item, index) => {
-      doc.text(`${index + 1}. ${item.name} (${item.variant}) - Rs.${item.price} x ${item.quantity} = ${item.prices[item.variant]}`, 10, yOffset);
-      yOffset += 10;
-    });
+  doc.setFontSize(20); 
+  doc.text(storeName, 10, 40); 
 
-    doc.save(`bill_${order._id}.pdf`);
-  };
+  doc.setFontSize(12); 
+  doc.text(`Order ID: ${order._id}`, 10, 50);
+  doc.text(`Date: ${formattedDate}`, 10, 60);
+  doc.text(`Time: ${formattedTime}`, 10, 70);
+  doc.text(`Price: Rs.${order.orderAmount}/-`, 10, 80);
+  doc.text(`Status: ${order.isDelivered ? 'Delivered' : 'In transit'}`, 10, 90);
+  doc.text('Items:', 10, 100);
 
-  //console.log(order);
+  let yOffset = 110;
+  order.orderItems.forEach((item, index) => {
+    doc.text(`${index + 1}. ${item.name} (${item.variant}) - Rs.${item.price} x ${item.quantity} = ${item.prices[item.variant]}`, 10, yOffset);
+    yOffset += 10;
+  });
+
+  doc.save(`bill_${order._id}.pdf`);
+};
+  
   
 
 
