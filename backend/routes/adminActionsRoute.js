@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const FoodItem = require('../models/Foodmodel'); 
 const Category = require('../models/CategoryModel');
 const Order = require('../models/orderModel');
+const User = require('../models/userModel');
 router.post('/addnewfooditem', async (req, res) => {
     //console.log(req.body)
     //const { name, description, prices, category, image,variants } = req.body;
@@ -113,5 +114,15 @@ router.post('/updateOrderStatus/:id', async (req, res) => {
     }
 })  
 
+router.get('/getAllUsers', async (req, res) => {
+    
+    try {
+        const users = await User.find({});
+        //console.log(users);
+        res.send(users);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+})
 
 module.exports = router;

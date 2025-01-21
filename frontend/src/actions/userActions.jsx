@@ -24,3 +24,23 @@ export const userLogout=()=> async dispatch=>{
     window.location.href = '/';
 
 }
+
+export const getAllUsers = async () => {
+    
+    try {
+      const token = Cookies.get('userInfo') ? JSON.parse(Cookies.get('userInfo')).token : null;
+  
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      
+      const response = await  axiosInstance.get("/api/adminActions/getAllUsers", config);
+      //console.log(response.data);
+      return response.data;
+      
+    } catch (error) {
+      throw error;
+    }
+  };
