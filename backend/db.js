@@ -15,8 +15,8 @@ const url = `mongodb+srv://rashmikanaveen734:${password}@cluster0.rt8uw.mongodb.
 mongoose.set('strictQuery', false);
 
 mongoose.connect(url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+  //useNewUrlParser: true,
+  //useUnifiedTopology: true,
   serverSelectionTimeoutMS: 30000 // Increase timeout to 30 seconds
 })
   .then(() => console.log('MongoDB connected'))

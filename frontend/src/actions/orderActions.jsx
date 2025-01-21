@@ -87,3 +87,23 @@ export const getAllOrders = () => async (dispatch) => {
     dispatch({ type: 'GET_ALL_ORDER_FAILED', payload: error.response.data.message });
   }
 };
+
+
+export const updateOrderStatus = (orderId, status) => async (dispatch) => {
+  const token = Cookies.get('userInfo') ? JSON.parse(Cookies.get('userInfo')).token : null;
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    dispatch({ type: 'UPDATE_ORDER_STATUS_REQUEST' });
+  try {
+    const response = await axiosInstance.post(`/api/adminActions/updateOrderStatus/${orderId}`, {},config);
+    dispatch({ type: 'UPDATE_ORDER_STATUS_SUCCESS', payload: response.data });
+    window.location.reload();
+  }
+  catch (error) {
+    dispatch({ type: 'UPDATE_ORDER_STATUS_FAILED', payload: error.response.data.message });
+  }
+}

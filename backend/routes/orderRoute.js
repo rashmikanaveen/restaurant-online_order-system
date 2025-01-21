@@ -35,7 +35,8 @@ router.post('/placeorder', async (req, res) => {
                     country: token.card.address_country,
                     postalCode: token.card.address_zip
                 },
-                transactionId: payment.source.id
+                transactionId: payment.source.id,
+                deliveredAt: null
             });
             await newOrder.save()
             res.send('Payment successful');

@@ -80,7 +80,7 @@ export const deleteFoodAction =  async(id) => {
     //console.log(id);
 
     const response = await axiosInstance.delete(`/api/adminActions/deletefooditem/${id}`, config);
-    console.log(response.data);
+    //console.log(response.data);
     window.location.reload();
   } catch (error) {
     console.error(error);

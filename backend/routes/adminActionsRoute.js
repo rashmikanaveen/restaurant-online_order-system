@@ -87,13 +87,31 @@ router.delete('/deletefooditem/:id', async (req, res) => {
 
 router.get('/getAllOrders', async (req, res) => {
     try {
-        const orders = await Order.find({});
+        const orders = await Order.find({}).sort({ createdAt: -1 });
         //console.log(orders);
         res.send(orders);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 })
+
+router.post('/updateOrderStatus/:id', async (req, res) => {
+    try {
+        const order = await Order.findById(req.params.id);
+        //console.log(order);
+        if (order) {
+            order.isDelivered = true;
+            order.deliveredAt = Date.now();
+
+            const updatedOrder = await order.save();
+            res.send('Order status updated successfully');
+        } else {
+            res.status(404).json({ message: 'Order not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+})  
 
 
 module.exports = router;

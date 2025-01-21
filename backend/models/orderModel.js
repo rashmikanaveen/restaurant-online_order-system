@@ -13,11 +13,13 @@ const orderSchema=mongoose.Schema({
         type: String,
         required: true,
       },
+      
         orderItems: [],
         shippingAddress: {type: Object},
         orderAmount: {type: Number,required: true},
         isDelivered: {type: Boolean,required: true, default: false},
         transactionId: {type: String,required: true},
+        deliveredAt: { type: Date, default: null },
 
 
 },
