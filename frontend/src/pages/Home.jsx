@@ -323,7 +323,7 @@ const Home = () => {
             <ul className="mt-32">Not Item Found</ul>
           )}
         </div>
-        <div className={`${filteredFoodItems.length === 0 ? 'mt-96 lg:mt-[48rem] md:mt-[48rem]' : ''}`}>
+        <div className={`${filteredFoodItems.length === 0 ? 'mt-96 lg:mt-[26rem] md:mt-[48rem]' : ''}`}>
         <Footer />
         </div>
       </div>
