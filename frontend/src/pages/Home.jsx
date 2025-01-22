@@ -21,9 +21,8 @@ const Home = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState("");
   const itemsPerPage = 10;
-
-  
 
   const dispatch = useDispatch();
   const categoryState = useSelector((state) => state.categoryReducer);
@@ -76,6 +75,11 @@ const Home = () => {
   const totalItems = Number(FoodItems.length);
   const totalPages = Number(Math.ceil(totalItems / itemsPerPage));
 
+  const handleCategoryClick = (categoryName) => {
+    setSelectedCategory(categoryName);
+    setCurrentPage(1);
+  };
+
   const handlePrevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -92,67 +96,111 @@ const Home = () => {
     setCurrentPage(page);
   };
 
-  const renderPageNumbers = () => {
-    const pageNumbers = [];
-    const totalPages = Math.ceil(totalItems / itemsPerPage);
-  
-    
-    pageNumbers.push(
-      <li
-        key={1}
-        className={`flex items-center justify-center cursor-pointer text-base font-bold px-3 h-9 rounded-md ${
-          currentPage === 1 ? 'bg-blue-500 text-white border-blue-500' : 'hover:bg-gray-50 border-2 text-gray-800'
-        }`}
-        onClick={() => handlePageClick(1)}
-      >
-        1
-      </li>
-    );
-  
-    
-    if (currentPage > 2) {
-      pageNumbers.push(<li key="ellipsis1" className="flex items-center justify-center px-1 mx-0 h-9">..</li>);
-    }
-  
-    
-    if (currentPage !== 1 && currentPage !== totalPages) {
-      pageNumbers.push(
-        <li
-          key={currentPage}
-          className={`flex items-center justify-center cursor-pointer text-base font-bold px-3 h-9 rounded-md ${
-            currentPage === currentPage ? 'bg-blue-500 text-white border-blue-500' : 'hover:bg-gray-50 border-2 text-gray-800'
-          }`}
-          onClick={() => handlePageClick(currentPage)}
-        >
-          {currentPage}
-        </li>
-      );
-    }
-  
-    
-    if (currentPage < totalPages - 1) {
-      pageNumbers.push(<li key="ellipsis2" className="flex items-center justify-center px-1 h-9">..</li>);
-    }
-  
-    
-    pageNumbers.push(
-      <li
-        key={totalPages}
-        className={`flex items-center justify-center cursor-pointer text-base font-bold px-3 h-9 rounded-md ${
-          currentPage === totalPages ? 'bg-blue-500 text-white border-blue-500' : 'hover:bg-gray-50 border-2 text-gray-800'
-        }`}
-        onClick={() => handlePageClick(totalPages)}
-      >
-        {totalPages}
-      </li>
-    );
-  
-    return pageNumbers;
-  };
+  const filteredFoodItems = selectedCategory
+    ? FoodItems.filter((item) => item.category === selectedCategory)
+    : FoodItems;
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = FoodItems.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filteredFoodItems.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+    const totalPages = Math.ceil(filteredFoodItems.length / itemsPerPage);
+
+    if (totalPages === 1) {
+      // Only one page, show only that page
+      pageNumbers.push(
+        <li
+          key="page-1"
+          className={`flex items-center justify-center cursor-pointer text-base font-bold px-3 h-9 rounded-md ${
+            currentPage === 1
+              ? "bg-blue-500 text-white border-blue-500"
+              : "hover:bg-gray-50 border-2 text-gray-800"
+          }`}
+          onClick={() => handlePageClick(1)}
+        >
+          1
+        </li>
+      );
+    } else {
+      // Always show the first page
+      pageNumbers.push(
+        <li
+          key="page-1"
+          className={`flex items-center justify-center cursor-pointer text-base font-bold px-3 h-9 rounded-md ${
+            currentPage === 1
+              ? "bg-blue-500 text-white border-blue-500"
+              : "hover:bg-gray-50 border-2 text-gray-800"
+          }`}
+          onClick={() => handlePageClick(1)}
+        >
+          1
+        </li>
+      );
+
+      // Show ellipsis if current page is more than 2 pages away from the first page
+      if (currentPage > 2) {
+        pageNumbers.push(
+          <li
+            key="ellipsis1"
+            className="flex items-center justify-center px-3 h-9"
+          >
+            ...
+          </li>
+        );
+      }
+
+      // Show the current page if it's not the first or last page
+      if (currentPage !== 1 && currentPage !== totalPages) {
+        pageNumbers.push(
+          <li
+            key={`page-${currentPage}`}
+            className={`flex items-center justify-center cursor-pointer text-base font-bold px-3 h-9 rounded-md ${
+              currentPage === currentPage
+                ? "bg-blue-500 text-white border-blue-500"
+                : "hover:bg-gray-50 border-2 text-gray-800"
+            }`}
+            onClick={() => handlePageClick(currentPage)}
+          >
+            {currentPage}
+          </li>
+        );
+      }
+
+      // Show ellipsis if current page is more than 2 pages away from the last page
+      if (currentPage < totalPages - 1) {
+        pageNumbers.push(
+          <li
+            key="ellipsis2"
+            className="flex items-center justify-center px-3 h-9"
+          >
+            ...
+          </li>
+        );
+      }
+
+      // Always show the last page
+      pageNumbers.push(
+        <li
+          key={`page-${totalPages}`}
+          className={`flex items-center justify-center cursor-pointer text-base font-bold px-3 h-9 rounded-md ${
+            currentPage === totalPages
+              ? "bg-blue-500 text-white border-blue-500"
+              : "hover:bg-gray-50 border-2 text-gray-800"
+          }`}
+          onClick={() => handlePageClick(totalPages)}
+        >
+          {totalPages}
+        </li>
+      );
+    }
+
+    return pageNumbers;
+  };
 
   const handleToggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
@@ -216,9 +264,7 @@ const Home = () => {
                   {categories.map((category) => (
                     <li
                       key={category._id}
-                      onClick={() => {
-                        console.log(category.name);
-                      }}
+                      onClick={() => handleCategoryClick(category.name)}
                       className="text-gray-800 text-sm flex items-center hover:bg-blue-300 rounded-md px-4 py-2 transition-all"
                     >
                       <label className="text-black text-sm">
@@ -257,23 +303,29 @@ const Home = () => {
           ))}
         </div>
         <div>
-          <ul className="flex space-x-5 justify-center font-[sans-serif] mb-8 w-full">
-            <li
-              className="flex items-center justify-center shrink-0 cursor-pointer text-base font-bold text-blue-600 h-9 rounded-md"
-              onClick={handlePrevPage}
-            >
-              Prev
-            </li>
-            {renderPageNumbers()}
-            <li
-              className="flex items-center justify-center shrink-0 cursor-pointer text-base font-bold text-blue-600 h-9 rounded-md"
-              onClick={handleNextPage}
-            >
-              Next
-            </li>
-          </ul>
+          {filteredFoodItems.length > 1 ? (
+            <ul className="flex space-x-5 justify-center font-[sans-serif] mb-8 w-full">
+              <li
+                className="flex items-center justify-center shrink-0 cursor-pointer text-base font-bold text-blue-600 h-9 rounded-md"
+                onClick={handlePrevPage}
+              >
+                Prev
+              </li>
+              {renderPageNumbers()}
+              <li
+                className="flex items-center justify-center shrink-0 cursor-pointer text-base font-bold text-blue-600 h-9 rounded-md"
+                onClick={handleNextPage}
+              >
+                Next
+              </li>
+            </ul>
+          ) : (
+            <ul className="mt-32">Not Item Found</ul>
+          )}
         </div>
+        <div className={`${filteredFoodItems.length === 0 ? 'mt-96 lg:mt-[48rem] md:mt-[48rem]' : ''}`}>
         <Footer />
+        </div>
       </div>
     </div>
   );
