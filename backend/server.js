@@ -31,8 +31,21 @@ app.use('/api/admin', protect, admin, (req, res) => {
 });
 */
 
+
 const PORT = process.env.PORT || 5000;
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+
+
+/*
+const http = require('http');
+const server = http.createServer(app);
+const PORT = process.env.PORT || 5000;
+const HOST = '192.168.227.198'; // Listen on all network interfaces
+server.listen(PORT, HOST, () => {
+  console.log(`Server is running on http://${HOST}:${PORT}`);
+});
+*/
