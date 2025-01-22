@@ -20,10 +20,10 @@ const Home = () => {
   const [timeElapsed, setTimeElapsed] = useState(false);
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
-  const currentUser = Cookies.get("userInfo")
-    ? JSON.parse(Cookies.get("userInfo"))
-    : null;
+  
 
   const dispatch = useDispatch();
   const categoryState = useSelector((state) => state.categoryReducer);
@@ -73,6 +73,86 @@ const Home = () => {
       </div>
     );
   }
+  const totalItems = Number(FoodItems.length);
+  const totalPages = Number(Math.ceil(totalItems / itemsPerPage));
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePageClick = (page) => {
+    setCurrentPage(page);
+  };
+
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+  
+    
+    pageNumbers.push(
+      <li
+        key={1}
+        className={`flex items-center justify-center cursor-pointer text-base font-bold px-3 h-9 rounded-md ${
+          currentPage === 1 ? 'bg-blue-500 text-white border-blue-500' : 'hover:bg-gray-50 border-2 text-gray-800'
+        }`}
+        onClick={() => handlePageClick(1)}
+      >
+        1
+      </li>
+    );
+  
+    
+    if (currentPage > 2) {
+      pageNumbers.push(<li key="ellipsis1" className="flex items-center justify-center px-1 mx-0 h-9">..</li>);
+    }
+  
+    
+    if (currentPage !== 1 && currentPage !== totalPages) {
+      pageNumbers.push(
+        <li
+          key={currentPage}
+          className={`flex items-center justify-center cursor-pointer text-base font-bold px-3 h-9 rounded-md ${
+            currentPage === currentPage ? 'bg-blue-500 text-white border-blue-500' : 'hover:bg-gray-50 border-2 text-gray-800'
+          }`}
+          onClick={() => handlePageClick(currentPage)}
+        >
+          {currentPage}
+        </li>
+      );
+    }
+  
+    
+    if (currentPage < totalPages - 1) {
+      pageNumbers.push(<li key="ellipsis2" className="flex items-center justify-center px-1 h-9">..</li>);
+    }
+  
+    
+    pageNumbers.push(
+      <li
+        key={totalPages}
+        className={`flex items-center justify-center cursor-pointer text-base font-bold px-3 h-9 rounded-md ${
+          currentPage === totalPages ? 'bg-blue-500 text-white border-blue-500' : 'hover:bg-gray-50 border-2 text-gray-800'
+        }`}
+        onClick={() => handlePageClick(totalPages)}
+      >
+        {totalPages}
+      </li>
+    );
+  
+    return pageNumbers;
+  };
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = FoodItems.slice(indexOfFirstItem, indexOfLastItem);
 
   const handleToggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
@@ -86,7 +166,7 @@ const Home = () => {
     console.log(searchValue);
   };
 
-  //console.log(FoodItems);
+  //console.log(currentItems);
 
   return (
     <div className="pt-28 sm:pt-24 md:pt-0 lg:pt-8 xl:pt-0 mt-6 lg:ml-52  xl:ml-52 ">
@@ -170,11 +250,28 @@ const Home = () => {
           </button>
         </div>
         <div className="flex flex-wrap -mx-4">
-          {FoodItems.map((food, index) => (
-            <div key={index} className="w-full sm:w-1/2 md:w-1/3 px-4 mb-8">
+          {currentItems.map((food) => (
+            <div key={food._id} className="w-full sm:w-1/2 md:w-1/3 px-4 mb-8">
               <Food food={food} />
             </div>
           ))}
+        </div>
+        <div>
+          <ul className="flex space-x-5 justify-center font-[sans-serif] mb-8 w-full">
+            <li
+              className="flex items-center justify-center shrink-0 cursor-pointer text-base font-bold text-blue-600 h-9 rounded-md"
+              onClick={handlePrevPage}
+            >
+              Prev
+            </li>
+            {renderPageNumbers()}
+            <li
+              className="flex items-center justify-center shrink-0 cursor-pointer text-base font-bold text-blue-600 h-9 rounded-md"
+              onClick={handleNextPage}
+            >
+              Next
+            </li>
+          </ul>
         </div>
         <Footer />
       </div>
