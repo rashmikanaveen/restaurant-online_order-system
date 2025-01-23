@@ -1,5 +1,0 @@
-[build]
-  base = "frontend" # Set the base directory to your frontend directory
-  command = "npm install && npm run build" # Build command for your frontend
-  publish = "dist" # Directory containing the built frontend files (adjust if using Create React App)
-
