@@ -1,7 +1,6 @@
 [build]
   base = "backend"
-  command = "npm install && npm run build" # Adjust as per your backend setup
-  publish = "dist" # Set to your frontend build directory if applicable
+  command = "npm install" # Only install dependencies, no build step
 
 [functions]
   directory = "netlify/functions"
