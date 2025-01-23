@@ -53,7 +53,8 @@ const Food = ({ food }) => {
           <select
             className="border border-gray-300 rounded p-2"
             value={variant}
-            onChange={(e) => setVariant(e.target.value)}
+            onChange={(e) => {setVariant(e.target.value),setQuantity(1)}}
+            
           >
             {food.variants.map((variant, index) => (
               <option key={index} value={variant}>
