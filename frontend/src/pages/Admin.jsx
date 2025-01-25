@@ -10,6 +10,7 @@ import OrdersList from "./OrdersList";
 import AddNewFood from "./AddNewFood";
 import AddNewFoodCategory from "./AddNewFoodCategory";
 import EditFoods from "./EditFoods";
+import OrderAdminView from './orderAdminView';
 
 const Admin = () => {
   const currentUser = Cookies.get("userInfo")
@@ -126,6 +127,7 @@ const Admin = () => {
             <Route path="addNewFood" element={<AddNewFood/>} />
             <Route path="addNewFoodCategory" element={<AddNewFoodCategory/>} />
             <Route path="editFood/:foodId" element={<EditFoods/>} />
+            <Route path="orders/:foodId" element={<OrderAdminView/>} />
           </Routes>
         </div>
       </div>
