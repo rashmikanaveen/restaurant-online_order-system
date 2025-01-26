@@ -1,4 +1,4 @@
-# Restaurant Online Order System
+# Restaurant Online Order System(EatEase)
 
 ## Project Description
 
