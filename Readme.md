@@ -61,7 +61,7 @@ This is how the admin sees all users who have created an account:
     ```
 5. Run the backend server:
     ```sh
-    npm start
+    nodemon start
     ```
 
 ### Frontend Setup
@@ -80,7 +80,7 @@ This is how the admin sees all users who have created an account:
     ```
 4. Run the frontend server:
     ```sh
-    npm start
+    npm run dev
     ```
 
 ## License
