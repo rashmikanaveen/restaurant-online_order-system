@@ -146,7 +146,7 @@ router.get('/getNumberOfFoodOrdersGivenUser/:id', async (req, res) => {
       const userId = req.params.id;
       const orders = await Order.countDocuments({ userid: userId });
       
-      console.log(orders);
+      //console.log(orders);
       res.json(orders);
     } catch (error) {
       console.error('Error getting number of food orders:', error); // Log the error for debugging

@@ -71,7 +71,7 @@ const Navbar_v_2 = () => {
                             data-original="#000000"
                           ></path>
                         </svg>
-                        Account {currentUser.name}
+                        {currentUser.name}
                       </a>
                       <hr className="my-2 -mx-2" />
 
