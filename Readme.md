@@ -55,7 +55,7 @@ This is how the admin sees all users who have created an account:
     DATABASE_URL=your_database_url
     DB_PASSWORD=your_db_password
     DB_NAME=your_db_name
-    MONGODB_URI=your_mongodb_uri
+    MONGODB_URI=your_mongodb_url
     STRIPE_SECRET=your_stripe_secret
     JWT_SECRET=your_jwt_secret
     ```
