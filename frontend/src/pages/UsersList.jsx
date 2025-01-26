@@ -7,12 +7,13 @@ import { getAllUsers } from "../actions/userActions";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
 import Success from "../components/Success";
-
+import { deleteUserAction } from "../actions/adminActions";
+import {getNumberOfOrdersGivenUser} from '../actions/adminActions';
 const UsersList = () => {
   const [allUsers, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [ordersCount, setOrdersCount] = useState({});
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -32,6 +33,39 @@ const UsersList = () => {
   const formatDate = (date) => {
     return date.toString().substring(0, 10);
   };
+
+  const deleteUser =  (id) => {
+        try {
+          if (window.confirm('Are you sure you want to delete this user?')) {
+            deleteUserAction(id);
+          }
+          
+          
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      useEffect(() => {
+        const fetchOrdersCount = async () => {
+          const counts = {};
+          for (const user of allUsers) {
+            const count = await getNumberOfOrdersGivenUser(user._id);
+            counts[user._id] = count;
+          }
+          setOrdersCount(counts);
+        };
+    
+        if (allUsers.length > 0) {
+          fetchOrdersCount();
+        }
+      }, [allUsers]);
+
+
+      
+  
+
+  
   
 
   return (
@@ -48,7 +82,7 @@ const UsersList = () => {
                   Email
                 </th>
                 <th className="p-4 text-left text-sm font-medium text-white">
-                  Role
+                  Number of Orders
                 </th>
                 <th className="p-4 text-left text-sm font-medium text-white">
                   Joined At
@@ -64,11 +98,14 @@ const UsersList = () => {
                 <tr className="even:bg-blue-50" key={user._id}>
                 <td className="p-4 text-sm text-black">{user.name}</td>
                 <td className="p-4 text-sm text-black">{user.email}</td>
-                <td className="p-4 text-sm text-black">{user.isAdmin?'Admin': 'User'}</td>
+                <td className="p-4 text-sm text-black">{ordersCount[user._id] || 0}</td>
                 <td className="p-4 text-sm text-black">{formatDate(user.updatedAt)}</td>
                 <td className="p-4">
                   
-                  <button className="mr-4" title="Delete">
+                  <button className="mr-4" title="Delete"
+                  onClick={() => deleteUser(user._id)}
+                  >
+                    
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-5 fill-red-500 hover:fill-red-700"

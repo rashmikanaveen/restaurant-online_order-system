@@ -117,12 +117,42 @@ router.post('/updateOrderStatus/:id', async (req, res) => {
 router.get('/getAllUsers', async (req, res) => {
     
     try {
-        const users = await User.find({});
+        const users = await User.find({ isAdmin: false });
         //console.log(users);
         res.send(users);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 })
+
+router.delete('/deleteuser/:id', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        if (user) {
+            await User.findByIdAndDelete(req.params.id);
+            //console.log(user)await FoodItem.findByIdAndDelete(req.params.id);
+            res.send('User deleted successfully');
+        } else {
+            res.status(404).json({ message: 'User not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+})
+
+
+router.get('/getNumberOfFoodOrdersGivenUser/:id', async (req, res) => {
+    try {
+      const userId = req.params.id;
+      const orders = await Order.countDocuments({ userid: userId });
+      
+      console.log(orders);
+      res.json(orders);
+    } catch (error) {
+      console.error('Error getting number of food orders:', error); // Log the error for debugging
+      res.status(500).json({ message: error.message });
+    }
+  });
+  
 
 module.exports = router;

@@ -1,4 +1,5 @@
 import axiosInstance from "../utils/AxiosInstance";
+import Cookies from "js-cookie";
 
 export const registerNewUser = (user) => async (dispatch) => {
   dispatch({ type: 'USER_REGISTER_REQUEST' });
@@ -11,7 +12,40 @@ export const registerNewUser = (user) => async (dispatch) => {
   }
 };
 
+export const deleteUserAction =  async(id) => {
+  try {
+    const token = Cookies.get('userInfo') ? JSON.parse(Cookies.get('userInfo')).token : null;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    //console.log(id);
 
+    const response = await axiosInstance.delete(`/api/adminActions/deleteuser/${id}`, config);
+    //console.log(response.data);
+    window.location.reload();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
+export const getNumberOfOrdersGivenUser = async (id) => {
+  try {
+    const token = Cookies.get('userInfo') ? JSON.parse(Cookies.get('userInfo')).token : null;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    console.log(id)
+    const response = await axiosInstance.get(`/api/adminActions/getNumberOfFoodOrdersGivenUser/${id}`, config);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 
 
