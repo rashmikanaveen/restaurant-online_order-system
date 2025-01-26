@@ -68,7 +68,7 @@ This is how the admin sees all users who have created an account:
 
 1. Navigate to the frontend directory:
     ```sh
-    cd ../frontend
+    cd frontend
     ```
 2. Install the dependencies:
     ```sh
