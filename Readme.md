@@ -74,11 +74,7 @@ This is how the admin sees all users who have created an account:
     ```sh
     npm install
     ```
-3. Create a `.env` file and add the necessary environment variables:
-    ```sh
-    touch .env
-    ```
-4. Run the frontend server:
+3. Run the frontend server:
     ```sh
     npm run dev
     ```
