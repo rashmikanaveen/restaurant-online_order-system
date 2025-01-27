@@ -1,8 +1,18 @@
-# Restaurant Online Order System(EatEase)
+# Restaurant Online Order System (EatEase)
 
 ## Project Description
 
 The Restaurant Online Order System is a web application that allows users to browse the menu, place orders, and manage their accounts. Admins can manage food items, view orders, and handle user accounts.
+
+## Technologies Used
+
+### Frontend
+- React
+
+### Backend
+- Node.js
+- Express
+- MongoDB
 
 ## User Interface
 
