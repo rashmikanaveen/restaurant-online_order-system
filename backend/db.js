@@ -6,8 +6,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 
-const password = process.env.DB_PASSWORD
-const url = `mongodb+srv://rashmikanaveen734:${password}@cluster0.rt8uw.mongodb.net/EatEase`
+
+const url = process.env.MONGODB_URI
 
 
 
