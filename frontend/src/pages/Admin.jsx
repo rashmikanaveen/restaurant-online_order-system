@@ -127,7 +127,7 @@ const Admin = () => {
             <Route path="addNewFood" element={<AddNewFood/>} />
             <Route path="addNewFoodCategory" element={<AddNewFoodCategory/>} />
             <Route path="editFood/:foodId" element={<EditFoods/>} />
-            <Route path="orders/:_Id" element={<OrderAdminView/>} />
+            <Route path="orders/:_id" element={<OrderAdminView/>} />
           </Routes>
         </div>
       </div>

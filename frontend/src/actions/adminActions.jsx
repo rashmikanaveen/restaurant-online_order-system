@@ -47,6 +47,24 @@ export const getNumberOfOrdersGivenUser = async (id) => {
   }
 }
 
+export const getOrderByOrderId = async (id) => {
+  try {
+    const token = Cookies.get('userInfo') ? JSON.parse(Cookies.get('userInfo')).token : null;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    console.log(id)
+    
+    const response = await axiosInstance.get(`/api/adminActions/getOrderByOrderId/${id}`, config);
+    return response.data;
+    
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 
 
 

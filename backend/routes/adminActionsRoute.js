@@ -155,4 +155,16 @@ router.get('/getNumberOfFoodOrdersGivenUser/:id', async (req, res) => {
   });
   
 
+  router.get('/getOrderByOrderId/:id', async (req, res) => {
+    try {
+        const order = await Order.findById(req.params.id);
+        console.log(order);
+        res.send(order);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+})
+
+
+
 module.exports = router;
