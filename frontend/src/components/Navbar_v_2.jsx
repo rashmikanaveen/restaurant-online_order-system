@@ -35,6 +35,7 @@ const Navbar_v_2 = () => {
 
   return (
     <div>
+      
       <header className="flex left-0 shadow-md px-4 sm:px-7 bg-white min-h-[70px] tracking-wide z-[110] fixed top-0 w-full items ">
         <div className="flex flex-wrap items-center justify-between gap-4 w-full relative">
           <a href="/">
