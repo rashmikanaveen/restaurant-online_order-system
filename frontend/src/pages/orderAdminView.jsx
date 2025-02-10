@@ -9,41 +9,7 @@ const OrderAdminView = () => {
   const {_id}= useParams();
 
   
-  const [order, setOrder] = useState({
-    _id: "678fd70bfb688f1731fb50f4",
-    name: "Hasika",
-    email: "HasikaIshani@gmail.com",
-    userid: "67880dc95588e71fb1515d8a",
-    orderItems: [
-      {
-        name: "Margherita Pizza",
-        _id: "678bdde4f19a2c3322b79231",
-        image:
-          "https://img.freepik.com/premium-vector/margherita-pizza-vector-illustration_1013341-219858.jpg",
-        variant: "large",
-        quantity: 1,
-        prices: {
-          small: 600,
-          medium: 1000,
-          large: 1500,
-        },
-        price: 1500,
-      },
-    ],
-    shippingAddress: {
-      street: "keeriyagolla",
-      city: "Hali Ela",
-      country: "Sri Lanka",
-      postalCode: "90060",
-    },
-    orderAmount: 1500,
-    isDelivered: true,
-    transactionId: "card_1Qjl6QFmxOub4XevzdTjcL5f",
-    deliveredAt: "2025-01-21T17:30:46.697Z",
-    createdAt: "2025-01-21T17:19:07.555Z",
-    updatedAt: "2025-01-21T17:30:46.698Z",
-    __v: 0,
-  });
+  const [order, setOrder] = useState(null);
 
   useEffect(() => {
     const fetchOrder = async () => {
@@ -100,6 +66,9 @@ const OrderAdminView = () => {
 
     doc.save(`bill_${order._id}.pdf`);
   };
+  if (!order) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="lg:ml-52 md:ml-16 xl:ml-48">
