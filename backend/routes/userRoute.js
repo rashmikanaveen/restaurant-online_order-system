@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
-
+const Order = require('../models/orderModel');
 // Registration route
 router.post('/register', async (req, res) => {
   const { name, email, password } = req.body;
@@ -80,5 +80,26 @@ router.post('/login', async (req, res) => {
     return res.status(400).json({ message: error.message });
   }
 });
+
+
+router.get('/getUserOrders/:userid', async (req, res) => {
+  const userid = req.params.userid;
+  try {
+      //console.log(userid)
+      const orders = await Order.find({ userid: userid });
+      //console.log(orders)
+      res.send(orders);
+  } catch (error) {
+      console.error(error);
+      res.status(400).json({ message: error.message });
+  }
+});
+
+
+
+
+
+
+
 
 module.exports = router;

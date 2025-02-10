@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
 import Success from "../components/Success";
+import { io } from 'socket.io-client';
 
 const OrdersList = () => {
   const [orders, setOrders] = useState([]);
@@ -19,6 +20,24 @@ const OrdersList = () => {
     error: errorOrders,
     orders: ordersList,
   } = orderList;
+
+  
+  useEffect(() => {
+    const socket = io('http://localhost:3000'); // Adjust the URL as needed
+
+    
+
+    socket.on('newOrder', (newOrder) => {
+      console.log('Received new order:', newOrder);
+      setOrders((prevOrders) => [newOrder, ...prevOrders]);
+    });
+
+    
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     dispatch(getAllOrders());

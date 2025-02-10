@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import Cookies from 'js-cookie';
 import axiosInstance from "../utils/AxiosInstance";
 
@@ -57,7 +57,7 @@ export const getUserOrders = () => async (dispatch) => {
   try {
     const userid=currentUser._id
     //console.log(userid)
-    const response = await axiosInstance.get(`/api/orders/getUserOrders/${userid}`,config); // Send user directly
+    const response = await axiosInstance.get(`/api/users/getUserOrders/${userid}`,config); // Send user directly
     //console.log(response.data)
     dispatch({ type: 'GET_USER_ORDER_SUCCESS', payload: response.data });
     

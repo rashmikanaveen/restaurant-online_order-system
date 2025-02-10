@@ -6,6 +6,7 @@ const { v4: uuidv4 } = require('uuid');
 dotenv.config();
 const Order = require('../models/orderModel');
 
+module.exports = (io) => {
 router.post('/placeorder', async (req, res) => {
     //console.log(req.body);
     const { token, total, userId, cartItems } = req.body;
@@ -39,8 +40,11 @@ router.post('/placeorder', async (req, res) => {
                 deliveredAt: null
             });
             await newOrder.save()
+            
+            const r=io.emit('newOrder', newOrder);
+            console.log(r)
             res.send('Payment successful');
-            console.log(newOrder)
+            
         } else {
             res.status(400).json({ message: 'Payment failed' });
         }
@@ -48,28 +52,13 @@ router.post('/placeorder', async (req, res) => {
         console.error(error);
         res.status(400).json({ message: error.message });
     }
+
 });
-
-
-
-router.get('/getUserOrders/:userid', async (req, res) => {
-    const userid = req.params.userid;
-    try {
-        //console.log(userid)
-        const orders = await Order.find({ userid: userid });
-        //console.log(orders)
-        res.send(orders);
-    } catch (error) {
-        console.error(error);
-        res.status(400).json({ message: error.message });
-    }
-});
+return router;
 
 
 
 
 
 
-
-
-module.exports = router;
+}

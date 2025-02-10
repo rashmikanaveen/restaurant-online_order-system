@@ -1,17 +1,29 @@
 const express = require('express');
+const http = require('http');
+const socketIo = require('socket.io');
 const db = require('./db');
 const cors = require('cors');
 const { protect, admin } = require('./middleware/authMiddleware');
-const FoodItem = require('./models/Foodmodel');   
+  
 
 
 const app = express();
+const server = http.createServer(app);
+
+const io = socketIo(server, {
+  cors: {
+    origin: '*', // Adjust the URL to match your frontend URL
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Authorization'],
+    credentials: true,
+  },
+});
 app.use(express.json());
 app.use(cors()); 
 
 const fooditemsRoute = require('./routes/fooditemsRoute');
 const userRoute=require('./routes/userRoute');
-const orderRoute=require('./routes/orderRoute');
+const orderRoute=require('./routes/orderRoute')(io);
 const adminRoute=require('./routes/adminActionsRoute');
 
 
@@ -23,29 +35,21 @@ app.get('/', (req, res) => {
 app.use('/api/fooditems', fooditemsRoute);
 app.use('/api/users',userRoute);
 app.use('/api/orders', protect,orderRoute);
-app.use('/api/adminActions', protect,adminRoute);
+app.use('/api/adminActions', protect,admin,adminRoute);
 
-/*
-app.use('/api/admin', protect, admin, (req, res) => {
-  res.send('Admin route');
+io.on('connection', (socket) => {
+  console.log('New client connected');
+
+  socket.on('disconnect', () => {
+    console.log('Client disconnected');
+  });
 });
-*/
 
 
 const PORT = process.env.PORT || 3000;
 // Start the server
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
 
-
-/*
-const http = require('http');
-const server = http.createServer(app);
-const PORT = process.env.PORT || 5000;
-const HOST = '192.168.227.198'; // Listen on all network interfaces
-server.listen(PORT, HOST, () => {
-  console.log(`Server is running on http://${HOST}:${PORT}`);
-});
-*/
