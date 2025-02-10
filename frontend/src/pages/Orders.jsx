@@ -8,7 +8,7 @@ import { getUserOrdersReducer } from "../reducers/orderReducer";
 import Success from "../components/Success";
 import Error from "../components/Error";
 import Loading from "../components/Loading";
-import Order from "./Order"
+
 import { useNavigate } from 'react-router-dom';
 const Orders = () => {
   const dispatch = useDispatch();

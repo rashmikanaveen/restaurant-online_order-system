@@ -157,6 +157,7 @@ const OrdersList = () => {
                     )}
                   </td>
                   <td className="p-4 text-sm text-black">
+                    <Link to={`/admin/orders/${order._id}`}>
                     <button
                       type="button"
                       
@@ -164,6 +165,7 @@ const OrdersList = () => {
                     >
                       View Order
                     </button>
+                    </Link>
                   </td>
                   
                   <td className="p-4 text-sm text-black ">{order._id}</td>

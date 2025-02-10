@@ -11,18 +11,40 @@ import Error from "../components/Error";
 import Loading from "../components/Loading";
 import jsPDF from 'jspdf';
 const OrderAdminView = () => {
-  const { orderId } = useParams();
-  const dispatch = useDispatch();
-  const ordersState = useSelector((state) => state.getUserOrdersReducer);
-  const { orders, error, loading } = ordersState;
-  useEffect(() => {
-    dispatch(getUserOrders());
-  }, [dispatch]);
-
-  //const subtotal = order.orderAmount;
-
-  //const total = order.orderAmount;
-  const order = orders ? orders.find((e) => e._id === orderId) : null;
+  const [order, setOrder] = useState({
+    "_id": "678fd70bfb688f1731fb50f4",
+    "name": "Hasika",
+    "email": "HasikaIshani@gmail.com",
+    "userid": "67880dc95588e71fb1515d8a",
+    "orderItems": [
+        {
+            "name": "Margherita Pizza",
+            "_id": "678bdde4f19a2c3322b79231",
+            "image": "https://img.freepik.com/premium-vector/margherita-pizza-vector-illustration_1013341-219858.jpg",
+            "variant": "large",
+            "quantity": 1,
+            "prices": {
+                "small": 600,
+                "medium": 1000,
+                "large": 1500
+            },
+            "price": 1500
+        }
+    ],
+    "shippingAddress": {
+        "street": "keeriyagolla",
+        "city": "Hali Ela",
+        "country": "Sri Lanka",
+        "postalCode": "90060"
+    },
+    "orderAmount": 1500,
+    "isDelivered": true,
+    "transactionId": "card_1Qjl6QFmxOub4XevzdTjcL5f",
+    "deliveredAt": "2025-01-21T17:30:46.697Z",
+    "createdAt": "2025-01-21T17:19:07.555Z",
+    "updatedAt": "2025-01-21T17:30:46.698Z",
+    "__v": 0
+});
 
   const logoUrl = "/src/assets/EatEase.png"
 
@@ -61,79 +83,73 @@ const handleDownloadBill = () => {
 
   return (
     <div className="lg:ml-52 md:ml-16 xl:ml-48">
-      {loading && <Loading />}
-      {error && <Error error="Something went wrong" />}
-      {order ? (
-        <div className="pt-28 md:pt-0">
+      <div className="pt-28 md:pt-0">
         
-      <div className="h-screen  pt-12 pb-1">
-        <h1 className="mb-10 text-center text-2xl font-bold">Cart Items</h1>
-        <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0 pt-0">
-          <div className="rounded-lg md:w-2/3">
-            <ul className="flex flex-col space-y-4">
-              {order.orderItems.map((item) => (
-                <li
-                  key={item._id + item.variant}
-                  className="flex flex-col sm:flex-row sm:justify-between items-center border p-4 rounded-lg"
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-6">
-                    <img
-                      src={item.image}
-                      alt="product-image"
-                      className="w-20 h-20 object-cover rounded-lg"
-                    />
-                    <div className="mt-4 sm:mt-0">
-                      <h2 className="text-lg font-bold text-gray-900">
-                        {item.name}
-                      </h2>
-                      <p className="mt-1 text-lg text-gray-700">
-                        {item.variant}
-                      </p>
+        <div className="h-screen  pt-12 pb-1">
+          <h1 className="mb-10 text-center text-2xl font-bold">Cart Items</h1>
+          <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0 pt-0">
+            <div className="rounded-lg md:w-2/3">
+              <ul className="flex flex-col space-y-4">
+                {order.orderItems.map((item) => (
+                  <li
+                    key={item._id + item.variant}
+                    className="flex flex-col sm:flex-row sm:justify-between items-center border p-4 rounded-lg"
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-6">
+                      <img
+                        src={item.image}
+                        alt="product-image"
+                        className="w-20 h-20 object-cover rounded-lg"
+                      />
+                      <div className="mt-4 sm:mt-0">
+                        <h2 className="text-lg font-bold text-gray-900">
+                          {item.name}
+                        </h2>
+                        <p className="mt-1 text-lg text-gray-700">
+                          {item.variant}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
-                    
-                    <div className="flex items-center space-x-4 mt-4 sm:mt-0">
-                      <p className="text-sm sm:text-base text-balance">
-                        {item.quantity} * {item.prices[item.variant]} ={" "}
-                        {item.price}
-                      </p>
+                    <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
                       
+                      <div className="flex items-center space-x-4 mt-4 sm:mt-0">
+                        <p className="text-sm sm:text-base text-balance">
+                          {item.quantity} * {item.prices[item.variant]} ={" "}
+                          {item.price}
+                        </p>
+                        
+                      </div>
                     </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-2xl md:mt-0 md:w-1/3">
-            <div className="mb-2 flex justify-between">
-              <p className="text-gray-700">Subtotal</p>
-              <p className="text-gray-700">Rs.{order.orderAmount.toFixed(2)}</p>
+                  </li>
+                ))}
+              </ul>
             </div>
-
-            <hr className="my-4" />
-            <div className="flex justify-between">
-              <p className="text-lg font-bold">Total</p>
-              <div>
-                <p className="mb-1 text-lg font-bold">Rs.{order.orderAmount.toFixed(2)}</p>
-                <p className="text-sm text-gray-700">including VAT</p>
+            <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-2xl md:mt-0 md:w-1/3">
+              <div className="mb-2 flex justify-between">
+                <p className="text-gray-700">Subtotal</p>
+                <p className="text-gray-700">Rs.{order.orderAmount.toFixed(2)}</p>
               </div>
+  
+              <hr className="my-4" />
+              <div className="flex justify-between">
+                <p className="text-lg font-bold">Total</p>
+                <div>
+                  <p className="mb-1 text-lg font-bold">Rs.{order.orderAmount.toFixed(2)}</p>
+                  <p className="text-sm text-gray-700">including VAT</p>
+                </div>
+              </div>
+              
+  
+              <button
+              className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600"
+              onClick={handleDownloadBill}
+            >
+              Download Bill
+            </button>
             </div>
-            
-
-            <button
-            className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600"
-            onClick={handleDownloadBill}
-          >
-            Download Bill
-          </button>
           </div>
         </div>
       </div>
-    </div>
-      ) : (
-        !loading && <p>Order not found</p>
-      )}
     </div>
     
   );

@@ -3,7 +3,7 @@ import {getAllFoodItems} from '../actions/fooditemActions';
 import {useEffect,useState} from 'react';
 import Loading from '../components/Loading';
 import Error from '../components/Error';
-import { BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 
 import{deleteFoodAction} from '../actions/fooditemActions';
 const FoodsList = () => {
