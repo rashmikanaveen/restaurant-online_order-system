@@ -4,6 +4,11 @@
 
 The Restaurant Online Order System is a web application that allows users to browse the menu, place orders, and manage their accounts. Admins can manage food items, view orders, and handle user accounts.
 
+
+### Real-Time Food Updates
+
+The application supports real-time food updates using Socket.IO. When a client creates a new order, the order list is updated in real-time for all connected clients, ensuring that the admin and other users see the latest information without needing to refresh the page.
+
 ## Technologies Used
 
 ### Frontend
@@ -13,6 +18,7 @@ The Restaurant Online Order System is a web application that allows users to bro
 - Node.js
 - Express
 - MongoDB
+- Socket.IO
 
 ## User Interface
 
