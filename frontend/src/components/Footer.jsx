@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { Github, Linkedin } from "lucide-react"
 const Footer = () => {
   const navigate = useNavigate();
 
@@ -31,6 +31,24 @@ const Footer = () => {
           <li><a href="#" onClick={handleContactClick} className="text-[15px] hover:text-white">Contact</a></li>
         </ul>
       </div>
+      <div className="mt-4 flex justify-center space-x-4">
+          <a
+            href="https://github.com/rashmikanaveen"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-white transition duration-300"
+          >
+            <Github className="h-6 w-6" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/rashmika-naveen/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-white transition duration-300"
+          >
+            <Linkedin className="h-6 w-6" />
+          </a>
+        </div>
     </footer>
     </div>
   );
