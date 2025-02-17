@@ -18,7 +18,7 @@ const UsersList = () => {
     const fetchUsers = async () => {
       try {
         const users = await getAllUsers();
-        console.log(users);
+        //console.log(users);
         setUsers(users);
         setLoading(false);
       } catch (error) {

@@ -28,7 +28,7 @@ const Footer = () => {
         <ul className="flex space-x-6 gap-y-2 max-lg:justify-center flex-wrap">
           <li><a href="#" onClick={handleTermsClick} className="text-[15px] hover:text-white">Terms of Service</a></li>
           <li><a href="#" onClick={handlePrivacyClick} className="text-[15px] hover:text-white">Privacy Policy</a></li>
-          <li><a href="#" onClick={handleContactClick} className="text-[15px] hover:text-white">Contact</a></li>
+          <li><a href="https://rashmika-naveen.vercel.app/" /*onClick={handleContactClick}*/ className="text-[15px] hover:text-white">Contact</a></li>
         </ul>
       </div>
       <div className="mt-4 flex justify-center space-x-4">

@@ -39,7 +39,7 @@ export const getNumberOfOrdersGivenUser = async (id) => {
         Authorization: `Bearer ${token}`,
       },
     };
-    console.log(id)
+    //console.log(id)
     const response = await axiosInstance.get(`/api/adminActions/getNumberOfFoodOrdersGivenUser/${id}`, config);
     return response.data;
   } catch (error) {
