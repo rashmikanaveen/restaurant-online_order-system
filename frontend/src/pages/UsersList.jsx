@@ -99,7 +99,7 @@ const UsersList = () => {
                 <td className="p-4 text-sm text-black">{user.name}</td>
                 <td className="p-4 text-sm text-black">{user.email}</td>
                 <td className="p-4 text-sm text-black">{ordersCount[user._id] || 0}</td>
-                <td className="p-4 text-sm text-black">{formatDate(user.updatedAt)}</td>
+                <td className="p-4 text-sm text-black">{formatDate(user.createdAt)}</td>
                 <td className="p-4">
                   
                   <button className="mr-4" title="Delete"

@@ -117,7 +117,7 @@ router.post('/updateOrderStatus/:id', async (req, res) => {
 router.get('/getAllUsers', async (req, res) => {
     
     try {
-        const users = await User.find({ isAdmin: false });
+        const users = await User.find({ isAdmin: false }).select('createdAt email name _id');
         //console.log(users);
         res.send(users);
     } catch (error) {
