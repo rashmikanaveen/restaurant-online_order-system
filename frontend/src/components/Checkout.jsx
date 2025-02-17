@@ -7,6 +7,9 @@ import Success from './Success';
 import Warning from './Warning';
 import Loading from './Loading';
 
+
+const StripeKey = import.meta.env.VITE_STRIPE_SECRET_KEY;
+
 const Checkout = ({ total }) => {
   const orderstate = useSelector((state) => state.placeOrderReducer);
   const { loading, error, success } = orderstate;
@@ -43,7 +46,7 @@ const Checkout = ({ total }) => {
         shippingAddress
         billingAddress // Enable billing address
         token={onToken}
-        stripeKey='pk_test_51QgD9AFmxOub4XevqU9VNYIjbFMLsdB02mC98BOBijqNpZBTaeXSyvvE99sUFOUCqFpnZqAmHwqlcBwp97hZueL500unN3WQVU' // Replace with your actual publishable key
+        stripeKey={StripeKey}
         currency="LKR" // Set currency to Sri Lankan Rupees
         name="Your Company Name"
         description={`Your total is ${total} LKR`}
