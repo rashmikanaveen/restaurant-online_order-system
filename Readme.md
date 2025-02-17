@@ -77,20 +77,29 @@ This is how the admin sees all users who have created an account:
     nodemon start
     ```
 
-### Frontend Setup
+    ### Frontend Setup
 
-1. Navigate to the frontend directory:
-    ```sh
-    cd frontend
-    ```
-2. Install the dependencies:
-    ```sh
-    npm install
-    ```
-3. Run the frontend server:
-    ```sh
-    npm run dev
-    ```
+    1. Navigate to the frontend directory:
+        ```sh
+        cd frontend
+        ```
+    2. Install the dependencies:
+        ```sh
+        npm install
+        ```
+    3. Create a `.env` file and add the necessary environment variables:
+        ```sh
+        touch .env
+        ```
+        Example:
+        ```env
+        VITE_STRIPE_SECRET_KEY=your_stripe_secret_key
+        ```
+    4. Run the frontend server:
+        ```sh
+        npm run dev
+        ```
+
 
 ## License
 
